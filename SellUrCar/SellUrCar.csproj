@@ -141,6 +141,7 @@
     <Compile Include="Controllers\AdminUserController.cs" />
     <Compile Include="Controllers\AdvertController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="EntityFramework\EfAdvertDal.cs" />
@@ -2324,6 +2325,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Gallery\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
