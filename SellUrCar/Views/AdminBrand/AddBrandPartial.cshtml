@@ -1,0 +1,26 @@
+﻿<button class="btn btn-primary" data-toggle="modal" data-target="#Modal1">
+    Yeni Marka Ekleme
+</button>
+
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Yeni Marka Girişi</h2>
+            </div>
+            <form method="post" action="/AdminBrand/AddBrand/">
+                <div class="modal-body">
+                    
+                    <label>Marka Adı</label>
+                    <input type="text" name="BrandName" class="form-control" />
+
+                    <br />
+                    <button class="btn btn-info">Kaydet</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,31 @@
+﻿@using EntityLayer.Concrete
+@model List<District>
+
+@{
+    ViewBag.Title = "DistrictByCity";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+@Html.Action("AddDistrictPartial", "AdminDistrict")
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>@Model[0].City.CityName İline ait İlçe Listesi</th>
+    </tr>
+
+    <tr>
+        <th>İlçe Adı</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td> @item.DistrictName</td>
+            <td><a href="/AdminDistrict/DeleteDistrict/@item.DistrictID" class="btn btn-danger">Sil</a></td>
+            <td>@Html.Action("EditDistrictPartial", "AdminDistrict", new { id = item.DistrictID })</td>
+        </tr>
+    }
+</table>

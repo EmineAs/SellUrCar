@@ -1,0 +1,30 @@
+﻿<button class="btn btn-primary" data-toggle="modal" data-target="#Modal1">
+    Yeni Seri Ekleme
+</button>
+
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Yeni Seri Girişi</h2>
+            </div>
+            <form method="post" action="/AdminSerial/AddSerial/">
+                <div class="modal-body">
+                    <label>Model ID</label>
+                    <input type="text" name="ModelID" class="form-control" value="@ViewBag.id" />
+
+                    <br />
+                    <label>Seri Adı</label>
+                    <input type="text" name="SerialName" class="form-control" />
+
+                    <br />
+                    <button class="btn btn-info">Kaydet</button>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+

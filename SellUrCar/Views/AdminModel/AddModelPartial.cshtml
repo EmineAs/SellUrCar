@@ -1,0 +1,25 @@
+﻿<button class="btn btn-primary" data-toggle="modal" data-target="#Modal3">
+    Yeni Model Ekleme
+</button>
+
+<div class="modal" id="Modal3">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Yeni Model Girişi</h2>
+            </div>
+            <form method="post" action="/AdminModel/AddModel/">
+                <div class="modal-body">
+                    <input type="hidden" id="BrandID" name="BrandID"  value="@ViewBag.id" />
+                    <br />
+                    <label>Model Adı</label>
+                    <input type="text" name="ModelName" class="form-control" />
+                    <br />
+                    <button class="btn btn-info">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+

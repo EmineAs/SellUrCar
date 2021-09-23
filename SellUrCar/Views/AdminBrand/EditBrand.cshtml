@@ -1,0 +1,31 @@
+﻿@model EntityLayer.Concrete.Brand
+
+
+@{
+    ViewBag.Title = "EditBrand";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Marka Güncellemesi</h2>
+<br />
+
+@using (Html.BeginForm("EditBrand", "AdminBrand", FormMethod.Post))
+{
+
+    <div class="form-group">
+        @Html.HiddenFor(x => x.BrandID, new { @class = "form-control"})
+        @Html.ValidationMessageFor(x => x.BrandID)
+
+        <br />
+        @Html.Label("Marka Adı")
+        @Html.TextBoxFor(x => x.BrandName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.BrandName)
+        <br />
+
+        <button class="btn btn-success">Güncelle</button>
+
+    </div>
+
+}
+
+
