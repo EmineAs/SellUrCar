@@ -1,0 +1,48 @@
+﻿
+@model EntityLayer.Concrete.User
+@{
+    ViewBag.Title = "UserProfile";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<br />
+<h2>Profilinizi Düzenleyin</h2>
+
+@using (Html.BeginForm("UserProfile", "UserPanel", FormMethod.Post))
+{
+    <div class="form-group">
+      
+        @Html.HiddenFor(x => x.UserID, new { @class = "form-control" })
+
+        @Html.Label("Kullanıcı Adı")
+        @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.UserName, null, new { @class = "text-danger" })
+        <br />
+        @Html.Label("Kullanıcı Soyadı")
+        @Html.TextBoxFor(x => x.UserSurName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.UserSurName, null, new { @class = "text-danger" })
+        <br />
+        @Html.Label("Kullanıcı Maili")
+        @Html.TextBoxFor(x => x.UserMail, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.UserMail, null, new { @class = "text-danger" })
+        <br />
+        @*@Html.Label("Yazar Kullanıcı Adı")
+        @Html.TextBoxFor(x => x.UserUserName, new { @class = "form-control" })
+        @Html.HiddenFor(x => x.UserPasswordHash, new { @class = "form-control" })
+        @Html.HiddenFor(x => x.UserPasswordSalt, new { @class = "form-control" })*@
+        @*@Html.Label("Yazar Şifre")*@ @*Bu kısım şifre hash'li olduğu için hata veriyor.'*@
+        @*@Html.PasswordFor(x => x.UserPasswordHash, new { @class = "form-control" })*@
+        @*@Html.ValidationMessageFor(x => x.UserPasswordHash)*@
+        @*<br />
+            <button class="btn btn-danger" data-toggle="modal" data-target="#Modal1">Yeni Şifre Oluştur</button>*@
+        @*@Html.Action("UserPasswordChange", "UserPanel")*@
+        <br />
+
+        @Html.Label("Kullanıcı Görsel Linki")
+        @Html.TextBoxFor(x => x.UserImage, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.UserImage)
+        <br />
+       
+        <button class="btn btn-success">Güncelle</button>
+    </div>
+}

@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IAdminService.cs" />
     <Compile Include="Abstract\IAdvertService.cs" />
     <Compile Include="Abstract\IBrandService.cs" />
     <Compile Include="Abstract\ICityService.cs" />
@@ -62,10 +63,12 @@
     <Compile Include="Abstract\IDistrictService.cs" />
     <Compile Include="Abstract\IFuelService.cs" />
     <Compile Include="Abstract\IGearService.cs" />
+    <Compile Include="Abstract\IImageFileService.cs" />
     <Compile Include="Abstract\IMessageService.cs" />
     <Compile Include="Abstract\IModelService.cs" />
     <Compile Include="Abstract\ISerialService.cs" />
     <Compile Include="Abstract\IUserService.cs" />
+    <Compile Include="Concrete\AdminManager.cs" />
     <Compile Include="Concrete\AdvertManager.cs" />
     <Compile Include="Concrete\BrandManager.cs" />
     <Compile Include="Concrete\CityManager.cs" />
@@ -74,6 +77,7 @@
     <Compile Include="Concrete\DistrictManager.cs" />
     <Compile Include="Concrete\FuelManager.cs" />
     <Compile Include="Concrete\GearManager.cs" />
+    <Compile Include="Concrete\ImageFileManager.cs" />
     <Compile Include="Concrete\MessageManager.cs" />
     <Compile Include="Concrete\ModelManager.cs" />
     <Compile Include="Concrete\SerialManager.cs" />

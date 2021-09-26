@@ -14,7 +14,7 @@ namespace BusinessLayer.Abstract
         Model GetByID(int id);
         void ModelDelete(Model model);
         void ModelUpdate(Model model);
-        List<Model> GetListByBrandID(int id);
+        List<Model> GetListBySerialID(int id);
 
 
     }

@@ -6,14 +6,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MvcProjeKampi.Controllers
+namespace SellUrCar.Controllers
 {
     public class GalleryController : Controller
     {
-        ImageFileManager ImageFileManager = new ImageFileManager(new EfImageFileDal());
+        ImageFileManager imageFileManager = new ImageFileManager(new EfImageFileDal());
         public ActionResult Index()
         {
-            var files = ImageFileManager.GetList();
+            var files = imageFileManager.GetList();
             return View(files);
         }
     }

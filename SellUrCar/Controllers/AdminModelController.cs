@@ -14,7 +14,7 @@ namespace SellUrCar.Controllers
     public class AdminModelController : Controller
     {
         ModelManager modelManager = new ModelManager(new EfModelDal());
-        BrandManager brandManager = new BrandManager(new EfBrandDal());
+        SerialManager SerialManager = new SerialManager(new EfSerialDal());
 
         public PartialViewResult AddModelPartial(int id)
         {
@@ -29,7 +29,7 @@ namespace SellUrCar.Controllers
             if (results.IsValid)
             {
                 modelManager.ModelAddBL(p);
-                return RedirectToAction("ModelByBrand",new { @id = p.BrandID });
+                return RedirectToAction("ModelBySerial", new { @id = p.SerialID });
 
             }
             else
@@ -38,16 +38,16 @@ namespace SellUrCar.Controllers
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
-                return RedirectToAction("ModelByBrand");
+                return RedirectToAction("ModelBySerial");
             }
         }
 
         public ActionResult DeleteModel(int id)
         {
             var modelvalue = modelManager.GetByID(id);
-            var id2 = modelvalue.BrandID;
+            var id2 = modelvalue.SerialID;
             modelManager.ModelDelete(modelvalue);
-            return RedirectToAction("ModelByBrand", new { @id = id2 });
+            return RedirectToAction("ModelBySerial", new { @id = id2 });
         }
 
         [HttpGet]
@@ -57,22 +57,27 @@ namespace SellUrCar.Controllers
             return View(modelvalue);
         }
 
+       
         [HttpPost]
         public ActionResult EditModel(Model p)
         {
             modelManager.ModelUpdate(p);
-            return RedirectToAction("Index");
+            return RedirectToAction("ModelBySerial", new { @id = p.SerialID });
         }
 
-        public ActionResult ModelByBrand(int id)
-        {
-            var modelvalues = modelManager.GetListByBrandID(id);
-            var brandvalue = brandManager.GetByID(id);
-            ViewBag.brand = brandvalue.BrandName;
 
+        public ActionResult ModelBySerial(int id)
+        {
+
+            var modelvalues = modelManager.GetListBySerialID(id);
+            var serialvalues = SerialManager.GetByID(id);
+            var brandname = serialvalues.Brands.BrandName;
+            var serialname = serialvalues.SerialName;
+            ViewBag.brandname = brandname;
+            ViewBag.serialname = serialname;
             return View(modelvalues);
         }
 
-        
+
     }
 }

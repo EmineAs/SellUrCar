@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Concrete\Admin.cs" />
     <Compile Include="Concrete\Advert.cs" />
     <Compile Include="Concrete\Brand.cs" />
     <Compile Include="Concrete\City.cs" />
@@ -59,7 +60,7 @@
     <Compile Include="Concrete\District.cs" />
     <Compile Include="Concrete\Fuel.cs" />
     <Compile Include="Concrete\Gear.cs" />
-    <Compile Include="Concrete\Image.cs" />
+    <Compile Include="Concrete\ImageFile.cs" />
     <Compile Include="Concrete\Message.cs" />
     <Compile Include="Concrete\Model.cs" />
     <Compile Include="Concrete\Serial.cs" />

@@ -17,12 +17,13 @@ namespace DataAccessLayer.Concrete
         public DbSet<District> Districts { get; set; }
         public DbSet<Fuel> Fuels { get; set; }
         public DbSet<Gear> Gears { get; set; }
-        public DbSet<Image> Images { get; set; }
+        public DbSet<ImageFile> ImageFiles { get; set; }
         public DbSet<Model> Models { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Serial> Serials { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Admin> Admins { get; set; }
 
     }
 }

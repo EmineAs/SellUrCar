@@ -14,9 +14,6 @@
 
     <div class="form-group">
         @Html.HiddenFor(x => x.BrandID, new { @class = "form-control"})
-        @Html.ValidationMessageFor(x => x.BrandID)
-
-        <br />
         @Html.Label("Marka Adı")
         @Html.TextBoxFor(x => x.BrandName, new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.BrandName)

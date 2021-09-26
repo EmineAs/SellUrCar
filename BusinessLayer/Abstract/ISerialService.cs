@@ -14,6 +14,6 @@ namespace BusinessLayer.Abstract
         Serial GetByID(int id);
         void SerialDelete(Serial serial);
         void SerialUpdate(Serial serial);
-        List<Serial> GetListByModelID(int id);
+        List<Serial> GetListByBrandID(int id);
     }
 }

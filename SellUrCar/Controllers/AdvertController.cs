@@ -8,12 +8,14 @@ using BusinessLayer.Concrete;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using PagedList;
+using PagedList.Mvc;
 
 namespace MvcProjeKampi.Controllers
 {
+
     public class AdvertController : Controller
     {
-        //Context c = new Context();
 
         AdvertManager advertManager = new AdvertManager(new EfAdvertDal());
         BrandManager brandManager = new BrandManager(new EfBrandDal());
@@ -24,14 +26,6 @@ namespace MvcProjeKampi.Controllers
         ModelManager modelManager = new ModelManager(new EfModelDal());
         SerialManager serialManager = new SerialManager(new EfSerialDal());
         DistrictManager districtManager = new DistrictManager(new EfDistrictDal());
-
-
-        public ActionResult Index()
-        {
-
-            var advertvalues = advertManager.GetList();
-            return View(advertvalues);
-        }
 
         [HttpGet]
         public ActionResult AddAdvert()
@@ -89,7 +83,14 @@ namespace MvcProjeKampi.Controllers
             advertManager.AdvertAddBL(p);
             return RedirectToAction("Index");
         }
+        public ActionResult AllAdvert(int page=1)
+        {
 
+            var advertvalues = advertManager.GetList().ToPagedList(page, 10); 
+            return View(advertvalues);
+        }
+
+       
         public ActionResult ContentByAdvert()
         {
             return View();
@@ -99,7 +100,7 @@ namespace MvcProjeKampi.Controllers
         {
 
             List<SelectListItem> valueModel = (from x in modelManager.GetList()
-                                               where x.BrandID == id
+                                               where x.SerialID == id
                                                select new SelectListItem
                                                {
                                                    Text = x.ModelName,
@@ -114,7 +115,7 @@ namespace MvcProjeKampi.Controllers
         {
 
             List<SelectListItem> valueSerial = (from x in serialManager.GetList()
-                                                where x.ModelID == id
+                                                where x.BrandID == id
                                                 select new SelectListItem
                                                 {
                                                     Text = x.SerialName,

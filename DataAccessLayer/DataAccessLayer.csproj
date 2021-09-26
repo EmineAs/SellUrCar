@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IAdminDal.cs" />
     <Compile Include="Abstract\IAdvertDal.cs" />
     <Compile Include="Abstract\IBrandDal.cs" />
     <Compile Include="Abstract\ICityDal.cs" />
@@ -59,25 +60,27 @@
     <Compile Include="Abstract\IDistrict.cs" />
     <Compile Include="Abstract\IFuelDal.cs" />
     <Compile Include="Abstract\IGearDal.cs" />
-    <Compile Include="Abstract\IImageDal.cs" />
+    <Compile Include="Abstract\IImageFileDal.cs" />
     <Compile Include="Abstract\IMessageDal.cs" />
     <Compile Include="Abstract\IModelDal.cs" />
     <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Abstract\ISerialDal.cs" />
     <Compile Include="Abstract\IUserDal.cs" />
     <Compile Include="Concrete\Context.cs" />
-    <Compile Include="Migrations\202109231935116_add_image_coloumn.cs" />
-    <Compile Include="Migrations\202109231935116_add_image_coloumn.designer.cs">
-      <DependentUpon>202109231935116_add_image_coloumn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202109231956092_add_message_coloumn.cs" />
-    <Compile Include="Migrations\202109231956092_add_message_coloumn.designer.cs">
-      <DependentUpon>202109231956092_add_message_coloumn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202109232004032_add_contact_coloumn.cs" />
-    <Compile Include="Migrations\202109232004032_add_contact_coloumn.designer.cs">
-      <DependentUpon>202109232004032_add_contact_coloumn.cs</DependentUpon>
-    </Compile>
+    <Compile Include="EntityFramework\EfAdminDal.cs" />
+    <Compile Include="EntityFramework\EfAdvertDal.cs" />
+    <Compile Include="EntityFramework\EfBrandDal.cs" />
+    <Compile Include="EntityFramework\EfCityDal.cs" />
+    <Compile Include="EntityFramework\EfColorDal.cs" />
+    <Compile Include="EntityFramework\EfContactDal.cs" />
+    <Compile Include="EntityFramework\EfDistrictDal.cs" />
+    <Compile Include="EntityFramework\EfFuelDal.cs" />
+    <Compile Include="EntityFramework\EfGearDal.cs" />
+    <Compile Include="EntityFramework\EfImageFileDal.cs" />
+    <Compile Include="EntityFramework\EfMessageDal.cs" />
+    <Compile Include="EntityFramework\EfModelDal.cs" />
+    <Compile Include="EntityFramework\EfSerialDal.cs" />
+    <Compile Include="EntityFramework\EfUserDal.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Concrete\Repository\GenericRepository.cs" />
@@ -91,17 +94,6 @@
       <Project>{ec458b73-6319-4795-b7e1-5a211ddcaf7f}</Project>
       <Name>EntittyLayer</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202109231935116_add_image_coloumn.resx">
-      <DependentUpon>202109231935116_add_image_coloumn.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202109231956092_add_message_coloumn.resx">
-      <DependentUpon>202109231956092_add_message_coloumn.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202109232004032_add_contact_coloumn.resx">
-      <DependentUpon>202109232004032_add_contact_coloumn.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

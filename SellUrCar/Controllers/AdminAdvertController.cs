@@ -1,62 +1,91 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using PagedList;
+using PagedList.Mvc;
 
 namespace MvcProjeKampi.Controllers
 {
+    [AllowAnonymous] //Herkesin girebileceği sayfa yoksa sayfa açılmıyor
+
     public class AdminAdvertController : Controller
     {
-        // GET: Advert
 
         AdvertManager advertManager = new AdvertManager(new EfAdvertDal());
         BrandManager brandManager = new BrandManager(new EfBrandDal());
-        UserManager userManager = new UserManager(new EfUserDal());
-        
+        FuelManager fuelManager = new FuelManager(new EfFuelDal());
+        GearManager gearManager = new GearManager(new EfGearDal());
+        CityManager cityManager = new CityManager(new EfCityDal());
+        ColorManager colorManager = new ColorManager(new EfColorDal());
+        ModelManager modelManager = new ModelManager(new EfModelDal());
+        SerialManager serialManager = new SerialManager(new EfSerialDal());
+        DistrictManager districtManager = new DistrictManager(new EfDistrictDal());
 
-        public ActionResult Index()
+
+        public ActionResult AllAdvert(int page=1)
         {
-            var advertvalues = advertManager.GetList();
+
+            var advertvalues = advertManager.GetList().ToPagedList(page,8);
             return View(advertvalues);
         }
 
-        [HttpGet]
-        public ActionResult AddAdvert()
-        {
-            List<SelectListItem> valueBrand = (from x in brandManager.GetList()
-                                                  select new SelectListItem
-                                                  {
-                                                      Text = x.BrandName,
-                                                      Value = x.BrandID.ToString()
-                                                  }).ToList();
-
-            List<SelectListItem> valueUser = (from x in userManager.GetList()
-                                                select new SelectListItem
-                                                {
-                                                    Text = x.UserName + " " + x.UserSurName,
-                                                    Value = x.UserID.ToString()
-                                                }).ToList();
-
-            ViewBag.vlb = valueBrand;
-            ViewBag.vlu = valueUser;
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult AddAdvert(Advert p)
-        {
-            p.AdvertDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            advertManager.AdvertAddBL(p);
-            return RedirectToAction("Index");
-        }
+        
 
         public ActionResult ContentByAdvert()
         {
             return View();
         }
+
+        public JsonResult GetModel(int? id)
+        {
+
+            List<SelectListItem> valueModel = (from x in modelManager.GetList()
+                                               where x.SerialID == id
+                                               select new SelectListItem
+                                               {
+                                                   Text = x.ModelName,
+                                                   Value = x.ModelID.ToString()
+                                               }).ToList();
+
+            return Json(valueModel, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult GetSerial(int? id)
+        {
+
+            List<SelectListItem> valueSerial = (from x in serialManager.GetList()
+                                                where x.BrandID == id
+                                                select new SelectListItem
+                                                {
+                                                    Text = x.SerialName,
+                                                    Value = x.SerialID.ToString()
+                                                }).ToList();
+
+            return Json(valueSerial, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetDistrict(int? id)
+        {
+
+            List<SelectListItem> valueDistrict = (from x in districtManager.GetList()
+                                                  where x.CityID == id
+                                                  select new SelectListItem
+                                                  {
+                                                      Text = x.DistrictName,
+                                                      Value = x.DistrictID.ToString()
+                                                  }).ToList();
+
+            return Json(valueDistrict, JsonRequestBehavior.AllowGet);
+        }
+
+
     }
 }

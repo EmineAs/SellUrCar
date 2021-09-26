@@ -14,12 +14,20 @@ namespace SellUrCar.Controllers
     public class AdminSerialController : Controller
     {
         SerialManager serialManager = new SerialManager(new EfSerialDal());
+        BrandManager brandManager = new BrandManager(new EfBrandDal());
         // GET: Content
         public ActionResult Index()
         {
             return View();
         }
 
+        public PartialViewResult AddSerialPartial(int id)
+        {
+            ViewBag.id = id;
+            return PartialView();
+        }
+
+        [HttpPost]
         public ActionResult AddSerial(Serial p)
         {
             SerialValidator serialValidator = new SerialValidator();
@@ -27,7 +35,7 @@ namespace SellUrCar.Controllers
             if (results.IsValid)
             {
                 serialManager.SerialAddBL(p);
-                return RedirectToAction("SerialByModel", new { @id = p.ModelID });
+                return RedirectToAction("SerialByBrand", new { @id = p.BrandID });
 
             }
             else
@@ -43,36 +51,30 @@ namespace SellUrCar.Controllers
         public ActionResult DeleteSerial(int id)
         {
             var serialvalue = serialManager.GetByID(id);
-            var id2 = serialvalue.ModelID;
+            var id2 = serialvalue.BrandID;
             serialManager.SerialDelete(serialvalue);
-            return RedirectToAction("SerialByModel", new { @id = id2 });
+            return RedirectToAction("SerialByBrand", new { @id = id2 });
         }
 
+        [HttpGet]
+        public ActionResult EditSerial(int id)
+        {
+            var serialvalue = serialManager.GetByID(id);
+            return View(serialvalue);
+        }
+
+        [HttpPost]
         public ActionResult EditSerial(Serial p)
         {
             serialManager.SerialUpdate(p);
-            return RedirectToAction("SerialByModel", new { @id = p.ModelID });
+            return RedirectToAction("SerialByBrand", new { @id = p.BrandID });
         }
 
-
-        public PartialViewResult AddSerialPartial(int id)
+        public ActionResult SerialByBrand(int id)
         {
-            ViewBag.id = id;
-            return PartialView();
-        }
-
-        public PartialViewResult EditSerialPartial(int id)
-        {
-            var serialvalue = serialManager.GetByID(id);
-            ViewBag.modelid = serialvalue.ModelID;
-            serialManager.SerialUpdate(serialvalue);
-            return PartialView(serialvalue);
-        }
-
-        public ActionResult SerialByModel(int id)
-        {
-            var serialvalues = serialManager.GetListByModelID(id);
-            ViewBag.id = id;
+            var serialvalues = serialManager.GetListByBrandID(id);
+            var brandvalues = brandManager.GetByID(id);
+            ViewBag.brandname = brandvalues.BrandName;
             return View(serialvalues);
         }
     }

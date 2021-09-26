@@ -44,9 +44,9 @@ namespace BusinessLayer.Concrete
             return _modelDal.List();
         }
 
-        public List<Model> GetListByBrandID(int id)
+        public List<Model> GetListBySerialID(int id)
         {
-            return _modelDal.List(x => x.BrandID == id);
+            return _modelDal.List(x => x.SerialID == id);
         }
 
 

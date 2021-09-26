@@ -13,8 +13,7 @@
 {
 <div class="form-group">
 
-    @Html.Label("İlan Tarihi", htmlAttributes: new { @class = "control-label col-md-2" })
-    @Html.TextBoxFor(x => x.AdvertDate, new { @class = "form-control", @Value = @DateTime.Now.ToShortDateString() })
+    @Html.Label( @DateTime.Now.ToShortDateString())
     <br />
     @Html.Label("İl")
     @Html.DropDownListFor(x => x.CityID, (IEnumerable<SelectListItem>)ViewBag.city, "-- İl Seçiniz  --", new { @class = "form-control" })
@@ -25,11 +24,11 @@
     @Html.Label("Marka")
     @Html.DropDownListFor(x => x.BrandID, (IEnumerable<SelectListItem>)ViewBag.brand, "-- Marka Seçiniz  --", new { @class = "form-control" })
     <br />
-    @Html.Label("Model")
-    @Html.DropDownListFor(x => x.ModelID, new SelectList(string.Empty, "Value", "Text"), "-- Model Seçiniz --", new { @class = "form-control" })
-    <br />
     @Html.Label("Seri")
     @Html.DropDownListFor(x => x.SerialID, new SelectList(string.Empty, "Value", "Text"), "-- Seri Seçiniz --", new { @class = "form-control" })
+    <br />
+    @Html.Label("Model")
+    @Html.DropDownListFor(x => x.ModelID, new SelectList(string.Empty, "Value", "Text"), "-- Model Seçiniz --", new { @class = "form-control" })
     <br />
     @Html.Label("Yakıt Tipi")
     @Html.DropDownListFor(x => x.FuelID, (List<SelectListItem>)ViewBag.fuel, new { @class = "form-control" })
@@ -44,7 +43,7 @@
     @*@Html.ValidationMessageFor(x => x.ColorID, "", new { @style = "color:red" })*@
     <br />
     @Html.Label("Kullanıcı")
-    @Html.DropDownListFor(x => x.UserID, (List<SelectListItem>)ViewBag.color, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.UserID, new { @class = "form-control" , @Value=Session["UserID"]})
     @*@Html.ValidationMessageFor(x => x.UserID, "", new { @style = "color:red" })*@
     <br />
     <div class="form-group">
@@ -59,17 +58,17 @@
     $(document).ready(function () {
         //Araba markası seçilince
         $("#BrandID").change(function () {
-            $("#ModelID").empty();
+            $("#SerialID").empty();
             $.ajax({
                 type: 'POST',
-                url: '@Url.Action("GetModel")', // GetModel metoduna git
+                url: '@Url.Action("GetSerial")', // GetSerial metoduna git
                 dataType: 'json',
                 data: { id: $("#BrandID").val() },
                 // Brandid'ye göre veri getir.
 
                 success: function (states) {
                     $.each(states, function (i, state) {
-                        $("#ModelID").append('<option value="' + state.Value + '">' +
+                        $("#SerialID").append('<option value="' + state.Value + '">' +
                              state.Text + '</option>');
                     });
                 },
@@ -84,19 +83,19 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        //Araba modeli seçilince
-        $("#ModelID").change(function () {
-            $("#SerialID").empty();
+        //Araba serisi seçilince
+        $("#SerialID").change(function () {
+            $("#ModelID").empty();
             $.ajax({
                 type: 'POST',
-                url: '@Url.Action("GetSerial")', // GetSerial metoduna git
+                url: '@Url.Action("GetModel")', // GetModel metoduna git
                 dataType: 'json',
-                data: { id: $("#ModelID").val() },
+                data: { id: $("#SerialID").val() },
                 // ModelID'ye göre veri getir.
 
                 success: function (states) {
                     $.each(states, function (i, state) {
-                        $("#SerialID").append('<option value="' + state.Value + '">' +
+                        $("#ModelID").append('<option value="' + state.Value + '">' +
                              state.Text + '</option>');
                     });
                 },

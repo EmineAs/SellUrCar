@@ -13,19 +13,17 @@
 
 @using (Html.BeginForm("EditModel", "AdminModel", FormMethod.Post))
 {
-    <div class="form-group">
-        @Html.HiddenFor(x => x.ModelID, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.ModelID)
+<div class="form-group">
+    @Html.HiddenFor(x => x.SerialID, new { @class = "form-control" })
+    @Html.HiddenFor(x => x.ModelID, new { @class = "form-control" })
+    @Html.Label("Model Adı")
+    @Html.TextBoxFor(x => x.ModelName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.ModelName)
+    <br />
 
-        <br />
-        @Html.Label("Model Adı")
-        @Html.TextBoxFor(x => x.ModelName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.ModelName)
-        <br />
+    <button class="btn btn-success">Güncelle</button>
 
-        <button class="btn btn-success">Güncelle</button>
-
-    </div>
+</div>
 }
 
 

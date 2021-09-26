@@ -1,0 +1,36 @@
+﻿@using EntityLayer.Concrete
+@model List<Serial>
+
+@{
+    ViewBag.Title = "SerialByBrand";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+@Html.Action("AddSerialPartial", "AdminSerial")
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>@ViewBag.brandname Markasına ait Seri Listesi</th>
+    </tr>
+
+    <tr>
+        <th>Seri Adı</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+        <th>Model Listesi</th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td> @item.SerialName</td>
+    <td><a href="/AdminSerial/DeleteSerial/@item.SerialID" class="btn btn-danger">Sil</a></td>
+    <td><a href="/AdminSerial/EditSerial/@item.SerialID" class="btn btn-warning">Güncelle</a></td>
+    <td><a href="/AdminModel/ModelBySerial/@item.SerialID" class="btn btn-primary">Model Listesi</a></td>
+</tr>
+    }
+</table>
+

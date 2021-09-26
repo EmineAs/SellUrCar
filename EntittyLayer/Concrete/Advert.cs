@@ -12,7 +12,9 @@ namespace EntityLayer.Concrete
         [Key]
         public int AdID { get; set; }
 
-        public DateTime AdvertDate { get; set; }
+        public DateTime? AdvertDate { get; set; }
+
+        public DateTime? ModelYear { get; set; }
 
         [StringLength(6)]
         public string CurrentMilage { get; set; }
@@ -52,6 +54,6 @@ namespace EntityLayer.Concrete
         public int? UserID { get; set; }
         public virtual User User { get; set; }
 
-        public ICollection<Image> Images { get; set; }
+        public ICollection<ImageFile> ImageFiles { get; set; }
     }
 }

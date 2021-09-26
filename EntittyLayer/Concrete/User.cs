@@ -21,7 +21,7 @@ namespace EntityLayer.Concrete
         [StringLength(250)]
         public string UserImage { get; set; }
 
-        [StringLength(20)]
+        [StringLength(30)]
         public string UserMail { get; set; }
 
         [StringLength(20)]

@@ -10,7 +10,8 @@ namespace BusinessLayer.Abstract
     public interface IAdvertService
     {
         List<Advert> GetList();
-
+        List<Advert> GetListByUserID(int id);
+       
         void AdvertAddBL(Advert advert);
 
         Advert GetByID(int id);

@@ -8,16 +8,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
 
 namespace SellUrCar.Controllers
 {
     public class AdminBrandController : Controller
     {
         BrandManager brandManager = new BrandManager(new EfBrandDal());
-
-        public ActionResult Index()
+       
+        [Authorize(Roles = "B")]
+        public ActionResult Index(int? page)
         {
-            var brandvalues = brandManager.GetList();
+            var brandvalues = brandManager.GetList().ToPagedList(page ?? 1,10);
             return View(brandvalues);
         }
 

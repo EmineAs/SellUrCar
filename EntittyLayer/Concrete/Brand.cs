@@ -12,10 +12,10 @@ namespace EntityLayer.Concrete
         [Key]
         public int BrandID { get; set; }
 
-        [StringLength(20)]
+        [StringLength(50)]
         public string BrandName { get; set; }
 
-        public ICollection<Model> Models { get; set; }
+        public ICollection<Serial> Serials { get; set; }
         public ICollection<Advert> Adverts { get; set; }
     }
 }

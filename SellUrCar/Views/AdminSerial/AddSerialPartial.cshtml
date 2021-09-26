@@ -10,8 +10,8 @@
             </div>
             <form method="post" action="/AdminSerial/AddSerial/">
                 <div class="modal-body">
-                    <label>Model ID</label>
-                    <input type="text" name="ModelID" class="form-control" value="@ViewBag.id" />
+                    @*<label>Marka ID</label>*@
+                    <input type="hidden" name="BrandID" class="form-control" value="@ViewBag.id" />
 
                     <br />
                     <label>Seri Adı</label>

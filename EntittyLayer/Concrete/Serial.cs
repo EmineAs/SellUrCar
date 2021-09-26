@@ -12,11 +12,14 @@ namespace EntityLayer.Concrete
         [Key]
         public int SerialID { get; set; }
 
-        [StringLength(10)]
+        [StringLength(50)]
         public string SerialName { get; set; }
 
-        public int? ModelID { get; set; }
-        public virtual Model Models { get; set; }
+        public int? BrandID { get; set; }
+        public virtual Brand Brands { get; set; }
+
+        public ICollection<Model> Models { get; set; }
+
         public ICollection<Advert> Adverts { get; set; }
 
 
