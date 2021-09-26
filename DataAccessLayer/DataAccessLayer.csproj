@@ -81,6 +81,10 @@
     <Compile Include="EntityFramework\EfModelDal.cs" />
     <Compile Include="EntityFramework\EfSerialDal.cs" />
     <Compile Include="EntityFramework\EfUserDal.cs" />
+    <Compile Include="Migrations\202109262011082_edit_advert.cs" />
+    <Compile Include="Migrations\202109262011082_edit_advert.designer.cs">
+      <DependentUpon>202109262011082_edit_advert.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Concrete\Repository\GenericRepository.cs" />
@@ -94,6 +98,11 @@
       <Project>{ec458b73-6319-4795-b7e1-5a211ddcaf7f}</Project>
       <Name>EntittyLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202109262011082_edit_advert.resx">
+      <DependentUpon>202109262011082_edit_advert.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

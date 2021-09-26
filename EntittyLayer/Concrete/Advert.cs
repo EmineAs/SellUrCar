@@ -14,7 +14,8 @@ namespace EntityLayer.Concrete
 
         public DateTime? AdvertDate { get; set; }
 
-        public DateTime? ModelYear { get; set; }
+        [StringLength(4)]
+        public String ModelYear { get; set; }
 
         [StringLength(6)]
         public string CurrentMilage { get; set; }

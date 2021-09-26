@@ -23,5 +23,10 @@ namespace BusinessLayer.Concrete
             return _imageFileDal.List();
         }
 
+        public List<ImageFile> GetListByAdID(int id)
+        {
+            return _imageFileDal.List(x => x.AdID == id);
+
+        }
     }
 }

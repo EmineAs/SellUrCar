@@ -18,6 +18,8 @@ namespace SellUrCar.Controllers
         BrandManager brandManager = new BrandManager(new EfBrandDal());
         UserManager userManager = new UserManager(new EfUserDal());
         ImageFileManager imageFileManager = new ImageFileManager(new EfImageFileDal());
+        SerialManager serialManager = new SerialManager(new EfSerialDal());
+        ModelManager modelManager = new ModelManager(new EfModelDal());
         //StatusManager statusManager = new StatusManager(new EfStatusDal());
 
         AdvertValidator advertValidator = new AdvertValidator();
@@ -171,7 +173,15 @@ namespace SellUrCar.Controllers
             var advertvalues = advertManager.GetList();
             var advertpages=advertvalues.ToPagedList( page ?? 1, 8); //? işaretleri boş gelme/boş olma durumuna karşı önlem amaçlı,kacinci sayfadan baslasin, sayfada kac deger olsun anlamina gelmektedir.
             
-            return View(advertvalues);
+            return View(advertpages);
+        }
+
+        public PartialViewResult ImageByAdvert(int id)
+        {
+            var imagevalues = imageFileManager.GetListByAdID(id);
+            var image = imagevalues[0].ImagePath;
+            ViewBag.image = image;
+            return PartialView();
         }
     }
 }
