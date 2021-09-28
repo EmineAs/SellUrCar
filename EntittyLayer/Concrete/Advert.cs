@@ -14,6 +14,11 @@ namespace EntityLayer.Concrete
 
         public DateTime? AdvertDate { get; set; }
 
+        [StringLength(50)]
+        public String AdvertTitle { get; set; }
+
+        public String AdvertDetail { get; set; }
+
         [StringLength(4)]
         public String ModelYear { get; set; }
 

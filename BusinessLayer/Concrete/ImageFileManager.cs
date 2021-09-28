@@ -28,5 +28,11 @@ namespace BusinessLayer.Concrete
             return _imageFileDal.List(x => x.AdID == id);
 
         }
+
+        public void ImageAddBL(ImageFile image)
+        {
+            _imageFileDal.Insert(image);
+
+        }
     }
 }

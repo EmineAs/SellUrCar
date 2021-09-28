@@ -49,10 +49,12 @@ namespace SellUrCar.Controllers
             if (userinfo != null)
             {
                 FormsAuthentication.SetAuthCookie(userinfo.UserName, false);
+                Session["UserID"] = userinfo.UserID;
+                Session["UserMail"] = userinfo.UserMail;
                 Session["UserName"] = userinfo.UserName;
                 Session["UserSurName"] = userinfo.UserSurName;
                 Session["UserImage"] = userinfo.UserImage;
-                return RedirectToAction("AllAdvert", "UserPanel");
+                return RedirectToAction("AllAdvert", "UserPanelAdvert");
             }
             else
             {

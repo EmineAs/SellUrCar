@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace SellUrCar.Controllers
 {
-    public class MessageController : Controller
+    public class UserPanelMessageController : Controller
     {
         MessageManager messageManager = new MessageManager(new EfMessageDal());
         MessageValidator messagevalidator = new MessageValidator();
@@ -70,7 +70,7 @@ namespace SellUrCar.Controllers
 
             if (results.IsValid)
             {
-                p.SenderMail = "admin@gmail.com";
+                p.SenderMail =(string)Session["UserMail"];
                 p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
                 p.MessageStatus = true;
                 p.Read = false;
@@ -97,10 +97,7 @@ namespace SellUrCar.Controllers
         }
         public ActionResult AddDraftMessage(Message p)
         {
-            p.SenderMail = "admin@gmail.com";
             p.Draft = true;
-            p.MessageStatus = true;
-            p.MessageDate = DateTime.Now;
             messageManager.MessageAddDraftBL(p);
             return RedirectToAction("Inbox");
 

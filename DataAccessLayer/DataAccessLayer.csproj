@@ -85,6 +85,10 @@
     <Compile Include="Migrations\202109262011082_edit_advert.designer.cs">
       <DependentUpon>202109262011082_edit_advert.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202109271336495_edit_advert2.cs" />
+    <Compile Include="Migrations\202109271336495_edit_advert2.designer.cs">
+      <DependentUpon>202109271336495_edit_advert2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Concrete\Repository\GenericRepository.cs" />
@@ -102,6 +106,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202109262011082_edit_advert.resx">
       <DependentUpon>202109262011082_edit_advert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109271336495_edit_advert2.resx">
+      <DependentUpon>202109271336495_edit_advert2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
