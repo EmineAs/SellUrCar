@@ -36,10 +36,10 @@ namespace SellUrCar.Roles
             throw new NotImplementedException();
         }
 
-        public override string[] GetRolesForUser(string username)
+        public override string[] GetRolesForUser(string mail)
         {
             Context c = new Context();
-            var x = c.Admins.FirstOrDefault(y => y.AdminUserName == username);
+            var x = c.Admins.FirstOrDefault(y => y.AdminMail == mail);
             return new string[] { x.AdminRole };
         }
 

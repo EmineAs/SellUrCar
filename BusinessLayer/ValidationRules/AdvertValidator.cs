@@ -12,7 +12,7 @@ namespace BusinessLayer.ValidationRules
     {
         public AdvertValidator()
         {
-            RuleFor(x => x.Brand.BrandName).NotEmpty().WithMessage("Marka adını boş geçemezsiniz");
+            RuleFor(x => x.BrandID).NotEmpty().WithMessage("Marka adını boş geçemezsiniz");
             
         }
     }

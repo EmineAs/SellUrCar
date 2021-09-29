@@ -1,9 +1,8 @@
 ﻿@model EntityLayer.Concrete.Message
 
 @{
-    ViewBag.Title = "NewMessage";
+    ViewBag.Title = "SendMessage";
     Layout = "~/Views/Shared/_UserLayout.cshtml";
-
 }
 
 <!DOCTYPE html>
@@ -29,7 +28,7 @@
                 <!-- /.col -->
                 <div class="col-md-9">
 
-                    @using (Html.BeginForm("NewMessage", "UserPanelMessage", FormMethod.Post))
+                    @using (Html.BeginForm("SendMessage", "UserPanelMessage", FormMethod.Post))
                     {
                         <div class="card card-primary card-outline">
                             <div class="card-header">
@@ -38,7 +37,7 @@
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <div class="form-group">
-                                    @Html.TextBoxFor(x => x.ReceiverMail, new { @class = "form-control", placeholder = "Alıcı:" })
+                                    @Html.TextBoxFor(x => x.ReceiverMail, new { @class = "form-control", @Value=ViewBag.mail })
                                     @Html.ValidationMessageFor(x => x.ReceiverMail, "", new { @style = "color:red" })
                                 </div>
                                 <div class="form-group">
@@ -92,3 +91,4 @@
             $('#compose-textarea').summernote()
         })
 </script>
+

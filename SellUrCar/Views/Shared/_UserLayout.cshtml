@@ -69,7 +69,7 @@ to get the desired effect
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                with font-awesome or any other icon font library -->
+                        with font-awesome or any other icon font library -->
                         <li class="nav-item has-treeview">
                             <a href="/UserPanel/UserProfile" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -174,29 +174,28 @@ to get the desired effect
             });
         })</script>
 
-    <!-- Bootstrap -->
+    <!-- jQuery -->
     <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
-
-    @*<script src="~/AdminLTE-3.0.4/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>*@
-    <script src="~/AdminLTE-3.0.4/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE -->
-    @*<script src="~/AdminLTE-3.0.4/AdminLTE-3.0.4/dist/js/adminlte.js"></script>*@
     <script src="~/AdminLTE-3.0.4/dist/js/adminlte.js"></script>
-    <!--icheck-mailbox-->
-    @*<script src="~/AdminLTE-3.0.4/AdminLTE-3.0.4/plugins/icheck-bootstrap/icheck-mailbox.js"></script>*@
-
     <!-- OPTIONAL SCRIPTS -->
-    @*<script src="~/AdminLTE-3.0.4/AdminLTE-3.0.4/plugins/chart.js/Chart.min.js"></script>*@
-    <script src="~/AdminLTE-3.0.4/chart.js/Chart.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    @*<script src="~/AdminLTE-3.0.4/AdminLTE-3.0.4/dist/js/demo.js"></script>*@
+    <script src="~/AdminLTE-3.0.4/plugins/chart.js/Chart.min.js"></script>
     <script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
-    @*<script src="~/AdminLTE-3.0.4/AdminLTE-3.0.4/dist/js/pages/dashboard3.js"></script>*@
     <script src="~/AdminLTE-3.0.4/dist/js/pages/dashboard3.js"></script>
-    <!-- Summernote -->
-    @*<script src="~/AdminLTE-3.0.4/AdminLTE-3.0.4/plugins/summernote/summernote-bs4.min.js"></script>*@
+
+    @RenderSection("JavaScriptAlt", false)
+
+
+     @*Bootstrap*@
+
+    @*icheck-mailbox-->*@
+    <script src="~/AdminLTE-3.0.4/plugins/icheck-bootstrap/icheck-mailbox.js"></script>
+    @*Summernote*@
+    <script src="~/AdminLTE-3.0.4/AdminLTE-3.0.4/plugins/summernote/summernote-bs4.min.js"></script>
     <script src="~/AdminLTE-3.0.4/summernote/summernote-bs4.min.js"></script>
-    <!-- Page Script -->
+    @*Page Script*@
     <script>
         $(function () {
             //Add text editor

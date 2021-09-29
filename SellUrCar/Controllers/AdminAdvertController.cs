@@ -13,7 +13,7 @@ using PagedList.Mvc;
 
 namespace MvcProjeKampi.Controllers
 {
-    [AllowAnonymous] //Herkesin girebileceği sayfa yoksa sayfa açılmıyor
+    //[AllowAnonymous] //Herkesin girebileceği sayfa yoksa sayfa açılmıyor
 
     public class AdminAdvertController : Controller
     {
@@ -27,6 +27,7 @@ namespace MvcProjeKampi.Controllers
         ModelManager modelManager = new ModelManager(new EfModelDal());
         SerialManager serialManager = new SerialManager(new EfSerialDal());
         DistrictManager districtManager = new DistrictManager(new EfDistrictDal());
+        ImageFileManager imageFileManager = new ImageFileManager(new EfImageFileDal());
 
 
         public ActionResult AllAdvert(int page=1)
@@ -36,11 +37,16 @@ namespace MvcProjeKampi.Controllers
             return View(advertvalues);
         }
 
-        
 
-        public ActionResult ContentByAdvert()
+        public PartialViewResult ImageByAdvert(int id)
         {
-            return View();
+            var imagevalues = imageFileManager.GetListByAdID(id);
+            if (imagevalues.Count > 0)
+            {
+                var image = imagevalues[0].ImagePath;
+                ViewBag.image = image;
+            }
+            return PartialView();
         }
 
         public JsonResult GetModel(int? id)

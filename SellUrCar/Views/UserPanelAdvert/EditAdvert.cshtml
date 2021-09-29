@@ -1,56 +1,58 @@
 ﻿@model EntityLayer.Concrete.Advert
 
 @{
-    ViewBag.Title = "AddAdvert";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "EditAdvert";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
 }
 
-<h1>Yeni İlan Ekleme</h1>
+<h1>İlan Güncelle</h1>
 <br />
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 
-@using (Html.BeginForm("AddAdvert", "Advert", FormMethod.Post))
+@using (Html.BeginForm("EditAdvert", "UserPanelAdvert", FormMethod.Post))
 {
 <div class="form-group">
-
-    @Html.Label( @DateTime.Now.ToShortDateString())
+    <div style="text-align:right">
+        @Html.Label(@DateTime.Now.ToString("dd-MMM-yyyy"))
+    </div>
+    <br />
+    @Html.Label("İlan Başlığı")
+    @Html.TextBoxFor(x => x.AdvertTitle, new { @class = "form-control" })
     <br />
     @Html.Label("İl")
-    @Html.DropDownListFor(x => x.CityID, (IEnumerable<SelectListItem>)ViewBag.city, "-- İl Seçiniz  --", new { @class = "form-control" })
+    @Html.DropDownListFor(x => x.CityID, (List<SelectListItem>)ViewBag.city, new { @class = "form-control" })
     <br />
     @Html.Label("İlçe")
-    @Html.DropDownListFor(x => x.DistrictID, new SelectList(string.Empty, "Value", "Text"), "-- İlçe Seçiniz --", new { @class = "form-control" })
+    @Html.DropDownListFor(x => x.DistrictID, new SelectList(string.Empty, "Value", "Text"),  new { @class = "form-control" })
     <br />
     @Html.Label("Marka")
-    @Html.DropDownListFor(x => x.BrandID, (IEnumerable<SelectListItem>)ViewBag.brand, "-- Marka Seçiniz  --", new { @class = "form-control" })
+    @Html.DropDownListFor(x => x.BrandID, (List<SelectListItem>)ViewBag.brand, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.BrandID,"", new { @style = "color:red" })
     <br />
     @Html.Label("Seri")
-    @Html.DropDownListFor(x => x.SerialID, new SelectList(string.Empty, "Value", "Text"), "-- Seri Seçiniz --", new { @class = "form-control" })
+    @Html.DropDownListFor(x => x.SerialID, new SelectList(string.Empty, "Value", "Text"), new { @class = "form-control" })
     <br />
     @Html.Label("Model")
-    @Html.DropDownListFor(x => x.ModelID, new SelectList(string.Empty, "Value", "Text"), "-- Model Seçiniz --", new { @class = "form-control" })
+    @Html.DropDownListFor(x => x.ModelID, new SelectList(string.Empty, "Value", "Text"),  new { @class = "form-control" })
+    <br />
+    @Html.Label("Model Yılı")
+    @Html.TextBoxFor(x => x.ModelYear, new { @class = "form-control" })
     <br />
     @Html.Label("Yakıt Tipi")
     @Html.DropDownListFor(x => x.FuelID, (List<SelectListItem>)ViewBag.fuel, new { @class = "form-control" })
-    @*@Html.ValidationMessageFor(x => x.FuelID, "", new { @style = "color:red" })*@
     <br />
     @Html.Label("Vites Tipi")
     @Html.DropDownListFor(x => x.GearID, (List<SelectListItem>)ViewBag.gear, new { @class = "form-control" })
-    @*@Html.ValidationMessageFor(x => x.GearID, "", new { @style = "color:red" })*@
     <br />
     @Html.Label("Renk")
     @Html.DropDownListFor(x => x.ColorID, (List<SelectListItem>)ViewBag.color, new { @class = "form-control" })
-    @*@Html.ValidationMessageFor(x => x.ColorID, "", new { @style = "color:red" })*@
     <br />
-    @Html.Label("Kullanıcı")
-    @Html.TextBoxFor(x => x.UserID, new { @class = "form-control" , @Value=Session["UserID"]})
-    @*@Html.ValidationMessageFor(x => x.UserID, "", new { @style = "color:red" })*@
+    @Html.Label("Fiyatı")
+    @Html.TextBoxFor(x => x.Price,  new { @class = "form-control" })
     <br />
-    <div class="form-group">
-        <label for="exampleInputFile">Resim</label>
-        <input type="file" id="exampleInputFile" name="resim2">
-    </div>
-
+    @Html.Label("Açıklama")
+    @Html.TextAreaFor(x => x.AdvertDetail, new { @class = "form-control" })
+    <br />
     <button class="btn btn-info">Kaydet</button>
 </div>
 }

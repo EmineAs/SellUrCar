@@ -23,7 +23,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Tüm İlanlar</h3>
+                <h3 class="card-title">İlanlarım</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                         <i class="fas fa-minus"></i>
@@ -41,7 +41,7 @@
                             <th style="width: 10%">
                                 Resim
                             </th>
-                            <th style="width: 20%">
+                            <th style="width: 10%">
                                 İlan Başlığı
                             </th>
                             <th style="width: 10%">
@@ -50,16 +50,19 @@
                             <th style="width: 10%">
                                 Model
                             </th>
-                            <th style="width: 10%">
+                            <th style="width: 8%">
                                 Model Yılı
                             </th>
                             <th style="width: 10%">
                                 Fiyatı
                             </th>
-                            <th style="width: 15%">
+                            <th style="width: 10%">
                                 İl/İlçe
                             </th>
-                            <th style="width: 20%">
+                            <th style="width: 10%">
+                                İlanı Düzenle
+                            </th>
+                            <th style="width: 10%">
                                 Görsel Ekle
                             </th>
                             <th style="width: 20%">
@@ -70,38 +73,41 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
+                        <tr>
 
-                                <td>
-                                    @Html.Action("ImageByAdvert", "UserPanelAdvert", new { id = item.AdID })
+                            <td>
+                                @Html.Action("ImageByAdvert", "UserPanelAdvert", new { id = item.AdID })
 
-                                </td>
-                                <td>
-                                    @item.AdvertTitle
-                                </td>
-                                <td>
-                                    @(((DateTime)item.AdvertDate).ToString("dd-MMM-yyyy"))
-                                </td>
-                                <td>
-                                    @item.Brand.BrandName @item.Serial.SerialName @item.Model.ModelName
-                                </td>
-                                <td>
-                                    @item.ModelYear
-                                </td>
-                                <td>
-                                    @item.Price.ToString("c")
-                                </td>
-                                <td>
-                                    @item.City.CityName @item.District.DistrictName
-                                </td>
-                                <td>
-                                    <a href="/UserPanelAdvert/UploadImage/@item.AdID" class="btn btn-primary">Görsel Ekle</a>
-                                </td>
-                                <td>
-                                    <a href="/UserPanelAdvert/AdvertDetail/@item.AdID" class="btn btn-primary">Detayları Gör</a>
-                                </td>
+                            </td>
+                            <td>
+                                @item.AdvertTitle
+                            </td>
+                            <td>
+                                @(((DateTime)item.AdvertDate).ToString("dd-MMM-yyyy"))
+                            </td>
+                            <td>
+                                @item.Brand.BrandName @item.Serial.SerialName @item.Model.ModelName
+                            </td>
+                            <td>
+                                @item.ModelYear
+                            </td>
+                            <td>
+                                @item.Price.ToString("c")
+                            </td>
+                            <td>
+                                @item.City.CityName @item.District.DistrictName
+                            </td>
+                            <td>
+                                <a href="/UserPanelAdvert/EditAdvert/@item.AdID" class="btn btn-primary">İlanı Düzenle</a>
+                            </td>
+                            <td>
+                                <a href="/UserPanelAdvert/UploadImage/@item.AdID" class="btn btn-primary">Görsel Ekle</a>
+                            </td>
+                            <td>
+                                <a href="/UserPanelAdvert/AdvertDetail/@item.AdID" class="btn btn-primary">Detayları Gör</a>
+                            </td>
 
-                            </tr>
+                        </tr>
                         }
                     </tbody>
                 </table>

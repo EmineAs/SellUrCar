@@ -23,10 +23,10 @@ namespace SellUrCar.Controllers
         [HttpPost]
         public ActionResult AdminLogin(Admin p)
         {
-            var adminuserinfo = c.Admins.FirstOrDefault(x => x.AdminUserName == p.AdminUserName && x.AdminPassword == p.AdminPassword);
+            var adminuserinfo = c.Admins.FirstOrDefault(x => x.AdminMail == p.AdminMail && x.AdminPassword == p.AdminPassword);
             if (adminuserinfo != null)
             {
-                FormsAuthentication.SetAuthCookie(adminuserinfo.AdminUserName, false);
+                FormsAuthentication.SetAuthCookie(adminuserinfo.AdminMail, false);
                 Session["AdminUserName"] = adminuserinfo.AdminUserName;
                 return RedirectToAction("AllAdvert", "AdminAdvert");
             }

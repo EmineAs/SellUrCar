@@ -10,6 +10,7 @@ using PagedList.Mvc;
 using EntityLayer.Concrete;
 using System.IO;
 using BusinessLayer.ValidationRules;
+using FluentValidation.Results;
 
 namespace SellUrCar.Controllers
 {
@@ -26,7 +27,7 @@ namespace SellUrCar.Controllers
         SerialManager serialManager = new SerialManager(new EfSerialDal());
         ModelManager modelManager = new ModelManager(new EfModelDal());
         DistrictManager districtManager = new DistrictManager(new EfDistrictDal());
-        //StatusManager statusManager = new StatusManager(new EfStatusDal());
+        UserManager userManager = new UserManager(new EfUserDal());
 
         AdvertValidator advertValidator = new AdvertValidator();
 
@@ -90,38 +91,72 @@ namespace SellUrCar.Controllers
         [HttpPost]
         public ActionResult NewAdvert(Advert advert)
         {
-            //ValidationResult results = advertValidator.Validate(advert);
+            ValidationResult results = advertValidator.Validate(advert);
 
 
-            //if (results.IsValid)
-            //{
-            advert.AdvertDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            advert.UserID = (int)Session["UserID"];
-            advertManager.AdvertAddBL(advert);
-            return RedirectToAction("UploadImage", new { @id = advert.AdID });
-            //}
-            //else //Dogrulama islemi gecerli degilse;
-            //{
-            //    foreach (var item in results.Errors)
-            //    {
-            //        ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-            //    }
-            //    return View();
-            //}
+            if (results.IsValid)
+            {
+                advert.AdvertDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                advert.UserID = (int)Session["UserID"];
+                advertManager.AdvertAddBL(advert);
+                return RedirectToAction("UploadImage", new { @id = advert.AdID });
+            }
+            else //Dogrulama islemi gecerli degilse;
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+                return View();
+            }
 
         }
 
         [HttpGet]
         public ActionResult EditAdvert(int id)
         {
-            List<SelectListItem> _valueBrand = (from x in brandManager.GetList()
-                                                select new SelectListItem
-                                                {
-                                                    Text = x.BrandName,
-                                                    Value = x.BrandID.ToString()
-                                                }).ToList();
+            List<SelectListItem> valueBrand = (from x in brandManager.GetList()
+                                               select new SelectListItem
+                                               {
+                                                   Text = x.BrandName,
+                                                   Value = x.BrandID.ToString()
+                                               }).ToList();
 
-            ViewBag.valueBrand = _valueBrand;
+
+            List<SelectListItem> valueFuel = (from x in fuelManager.GetList()
+                                              select new SelectListItem
+                                              {
+                                                  Text = x.FuelType,
+                                                  Value = x.FuelID.ToString()
+                                              }).ToList();
+
+            List<SelectListItem> valueGear = (from x in gearManager.GetList()
+                                              select new SelectListItem
+                                              {
+                                                  Text = x.GearType,
+                                                  Value = x.GearID.ToString()
+                                              }).ToList();
+
+            List<SelectListItem> valueCity = (from x in cityManager.GetList()
+                                              select new SelectListItem
+                                              {
+                                                  Text = x.CityName,
+                                                  Value = x.CityID.ToString()
+                                              }).ToList();
+
+            List<SelectListItem> valueColor = (from x in colorManager.GetList()
+                                               select new SelectListItem
+                                               {
+                                                   Text = x.ColorName,
+                                                   Value = x.ColorID.ToString()
+                                               }).ToList();
+
+            ViewBag.color = valueColor;
+            ViewBag.brand = valueBrand;
+            ViewBag.fuel = valueFuel;
+            ViewBag.gear = valueGear;
+            ViewBag.city = valueCity;
+
             var advertValue = advertManager.GetByID(id);
             return View(advertValue);
         }
@@ -154,10 +189,13 @@ namespace SellUrCar.Controllers
             var advertvalues = advertManager.GetByID(id);
             ViewBag.id = id;
             return View(advertvalues);
-            
+
         }
-
-
+        public PartialViewResult UserContact(int id)
+        {
+            var uservalues = userManager.GetByID(id);
+            return PartialView(uservalues);
+        }
 
 
         public PartialViewResult ImageByAdvert(int id)

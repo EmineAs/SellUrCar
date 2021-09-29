@@ -8,7 +8,6 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-@*@{ string color = "", statuscolor = "", status = "", msg = "";}*@
 <body class="hold-transition sidebar-mini">
     <section class="content-header">
         <div class="container-fluid">
@@ -38,19 +37,29 @@
                     <thead>
                         <tr>
 
-                            <th style="width: 20%">
+                            <th style="width: 10%">
                                 Resim
                             </th>
-                            <th style="width: 15%">
+                            <th style="width: 20%">
+                                İlan Başlığı
+                            </th>
+                            <th style="width: 10%">
                                 İlan Tarihi
                             </th>
                             <th style="width: 10%">
                                 Model
                             </th>
-                            <th style="width: 8%" class="text-center">
-                                Kategori
+                            <th style="width: 10%">
+                                Model Yılı
+                            </th>
+                            <th style="width: 10%">
+                                Fiyatı
+                            </th>
+                            <th style="width: 15%">
+                                İl/İlçe
                             </th>
                             <th style="width: 20%">
+                                Detaylar
                             </th>
                         </tr>
                     </thead>
@@ -60,8 +69,11 @@
                             <tr>
 
                                 <td>
-                                    @Html.Action("ImageByAdvert", "UserPanel", new { id = item.AdID })
+                                    @Html.Action("ImageByAdvert", "AdminAdvert", new { id = item.AdID })
 
+                                </td>
+                                <td>
+                                    @item.AdvertTitle
                                 </td>
                                 <td>
                                     @(((DateTime)item.AdvertDate).ToString("dd-MMM-yyyy"))
@@ -69,6 +81,19 @@
                                 <td>
                                     @item.Brand.BrandName @item.Serial.SerialName @item.Model.ModelName
                                 </td>
+                                <td>
+                                    @item.ModelYear
+                                </td>
+                                <td>
+                                    @item.Price.ToString("c")
+                                </td>
+                                <td>
+                                    @item.City.CityName @item.District.DistrictName
+                                </td>
+                                <td>
+                                    <a href="/AdminAdvert/AdvertDetail/@item.AdID" class="btn btn-primary">Detayları Gör</a>
+                                </td>
+
                             </tr>
                         }
                     </tbody>

@@ -15,6 +15,8 @@ namespace SellUrCar.Controllers
     public class UserPanelMessageController : Controller
     {
         MessageManager messageManager = new MessageManager(new EfMessageDal());
+        UserManager userManager = new UserManager(new EfUserDal());
+
         MessageValidator messagevalidator = new MessageValidator();
 
         //[Authorize]
@@ -71,6 +73,42 @@ namespace SellUrCar.Controllers
             if (results.IsValid)
             {
                 p.SenderMail =(string)Session["UserMail"];
+                p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                p.MessageStatus = true;
+                p.Read = false;
+                messageManager.MessageAddBL(p);
+                return RedirectToAction("Sendbox");
+
+            }
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult SendMessage(int id)
+        {
+            var uservalues = userManager.GetByID(id);
+            var mail = uservalues.UserMail;
+            ViewBag.mail = mail;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateInput(false)] //content açılmıyordu ekledim sonra buraya dönecem
+
+        public ActionResult SendMessage(Message p)
+        {
+            ValidationResult results = messagevalidator.Validate(p);
+
+            if (results.IsValid)
+            {
+                p.SenderMail = (string)Session["UserMail"];
                 p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
                 p.MessageStatus = true;
                 p.Read = false;

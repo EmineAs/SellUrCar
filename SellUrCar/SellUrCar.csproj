@@ -152,6 +152,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\UserPanelAdvertController.cs" />
+    <Compile Include="Controllers\UserPanelContactController.cs" />
     <Compile Include="Controllers\UserPanelController.cs" />
     <Compile Include="Controllers\UserPanelGalleryController.cs" />
     <Compile Include="Controllers\UserPanelMessageController.cs" />
@@ -2569,8 +2570,6 @@
     <Content Include="Views\AdminUser\AddUser.cshtml" />
     <Content Include="Views\AdminUser\Index.cshtml" />
     <Content Include="Views\AdminUser\PassiveUser.cshtml" />
-    <Content Include="Views\Advert\AddAdvert.cshtml" />
-    <Content Include="Views\Advert\AllAdvert.cshtml" />
     <Content Include="Views\Contact\ContactPartial.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Message\Inbox.cshtml" />
@@ -2591,7 +2590,6 @@
     <Content Include="Views\Login\UserLogIn.cshtml" />
     <Content Include="Views\AdminSerial\EditSerial.cshtml" />
     <Content Include="Views\UserPanelAdvert\NewAdvert.cshtml" />
-    <Content Include="Views\Shared\_banner.cshtml" />
     <Content Include="Views\UserPanelAdvert\ImageByAdvert.cshtml" />
     <Content Include="Views\UserPanelMessage\Draftbox.cshtml" />
     <Content Include="Views\UserPanelMessage\GetMessageDetail.cshtml" />
@@ -2604,6 +2602,13 @@
     <Content Include="Views\UserPanelAdvert\MyAdvert.cshtml" />
     <Content Include="Views\UserPanelAdvert\AdvertDetail.cshtml" />
     <Content Include="Views\UserPanelGallery\Gallery.cshtml" />
+    <Content Include="Views\UserPanelAdvert\EditAdvert.cshtml" />
+    <Content Include="Views\UserPanelAdvert\UserContact.cshtml" />
+    <Content Include="Views\UserPanelContact\Index.cshtml" />
+    <Content Include="Views\UserPanelContact\GetContactDetail.cshtml" />
+    <Content Include="Views\UserPanelContact\ContactPartial.cshtml" />
+    <Content Include="Views\UserPanelMessage\SendMessage.cshtml" />
+    <Content Include="Views\AdminAdvert\ImageByAdvert.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

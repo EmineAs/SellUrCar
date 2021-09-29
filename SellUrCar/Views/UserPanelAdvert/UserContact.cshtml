@@ -1,9 +1,8 @@
-﻿@using EntityLayer.Concrete
-@model List<ImageFile>
+﻿@model EntityLayer.Concrete.User
 
 
 @{
-    ViewBag.Title = "Gallery";
+    ViewBag.Title = "UserContact";
 }
 
 <!DOCTYPE html>
@@ -36,24 +35,33 @@
                     <div class="card card-primary">
                         <div class="card-header">
                             <div class="card-title">
-                                Galeri
+                                Araç Sahibi Bilgileri
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12">
-                                    <img src="~/AdminLTE-3.0.4/imagefiles/@Model[0].ImagePath" class="product-image" alt="@Model[0].ImageName">
+
+                                    <p style="text-align:center">
+
+                                        @Model.UserName @Model.UserSurName
+                                    </p>
+
+                                    <p style="text-align:center">
+
+                                        <i class="fas fa-mobile-alt"></i>
+
+                                        @Model.UserPhoneNumber
+                                    </p>
+
+                                    <p style="text-align:center">
+
+                                        <i class="fas fa-mail-bulk"></i>
+
+                                        <a href="/UserPanelMessage/SendMessage/@Model.UserID" >Mesaj Gönder</a>
+                                    </p>
                                 </div>
-                                <div class="col-12 product-image-thumbs">
-                                    @foreach (var item in Model)
-                                    {
-                                        <div class="product-image-thumb active">
-                                            <a href="~/AdminLTE-3.0.4/imagefiles/@item.ImagePath" data-toggle="lightbox" data-title="@item.ImageName" data-gallery="gallery">
-                                                <img src="~/AdminLTE-3.0.4/imagefiles/@item.ImagePath" class="img-fluid mb-2" alt="white sample" />
-                                            </a>
-                                        </div>
-                                    }
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -98,3 +106,4 @@
         })</script>
 </body>
 </html>
+
