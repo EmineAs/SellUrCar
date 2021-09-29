@@ -19,41 +19,52 @@ namespace SellUrCar.Controllers
 
         MessageValidator messagevalidator = new MessageValidator();
 
-        //[Authorize]
+
         public ActionResult Inbox()
         {
-            var messageList = messageManager.GetListInBox();
+            string mail = (string)Session["UserMail"];
+
+            var messageList = messageManager.GetListInBox(mail);
             return View(messageList);
         }
 
         public ActionResult ReadMessages()
         {
-            var messageList = messageManager.GetListReadMessages();
+            string mail = (string)Session["UserMail"];
+
+            var messageList = messageManager.GetListReadMessages(mail);
             return View("Inbox", messageList);
         }
 
         public ActionResult UnReadMessages()
         {
-            var messageList = messageManager.GetListUnReadMessages();
+            string mail = (string)Session["UserMail"];
+
+            var messageList = messageManager.GetListUnReadMessages(mail);
             return View("Inbox", messageList);
         }
 
         public ActionResult Sendbox()
         {
+            string mail = (string)Session["UserMail"];
 
-            var messageList = messageManager.GetListSendBox();
+            var messageList = messageManager.GetListSendBox(mail);
             return View(messageList);
         }
 
         public ActionResult Draftbox()
         {
-            var messageList = messageManager.GetListDraftBox();
+            string mail = (string)Session["UserMail"];
+
+            var messageList = messageManager.GetListDraftBox(mail);
             return View(messageList);
         }
 
         public ActionResult Trashbox()
         {
-            var messageList = messageManager.GetListTrashBox();
+            string mail = (string)Session["UserMail"];
+
+            var messageList = messageManager.GetListTrashBox(mail);
             return View(messageList);
         }
 
@@ -139,6 +150,37 @@ namespace SellUrCar.Controllers
             messageManager.MessageAddDraftBL(p);
             return RedirectToAction("Inbox");
 
+        }
+
+        public PartialViewResult MessagePartial()
+        {
+            string mail = (string)Session["UserMail"];
+
+            var inboxvalues = messageManager.GetListInBox(mail);
+            var countInbox = inboxvalues.Count();
+            ViewBag.countInbox = countInbox;
+
+            var readvalues = messageManager.GetListReadMessages(mail);
+            var countRead = readvalues.Count();
+            ViewBag.countRead = countRead;
+
+            var unreadvalues = messageManager.GetListUnReadMessages(mail);
+            var countUnRead = unreadvalues.Count();
+            ViewBag.countUnRead = countUnRead;
+
+            var sendboxvalues = messageManager.GetListSendBox(mail);
+            var countSendbox = sendboxvalues.Count();
+            ViewBag.countSendbox = countSendbox;
+
+            var draftboxvalues = messageManager.GetListDraftBox(mail);
+            var countDraftbox = draftboxvalues.Count();
+            ViewBag.countDraftbox = countDraftbox;
+
+            var trashboxvalues = messageManager.GetListTrashBox(mail);
+            var countTrashbox = trashboxvalues.Count();
+            ViewBag.countTrashbox = countTrashbox;
+
+            return PartialView();
         }
 
 

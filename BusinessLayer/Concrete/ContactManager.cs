@@ -44,6 +44,6 @@ namespace BusinessLayer.Concrete
             return _contactDal.List(x => x.ContactStatus == true);
         }
 
-       
+
     }
 }

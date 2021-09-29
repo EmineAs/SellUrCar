@@ -23,10 +23,9 @@ namespace SellUrCar.Controllers
         Context c = new Context();
 
         [HttpGet]
-        public ActionResult UserProfile(int id)
+        public ActionResult UserProfile()
         {
-            string session = (string)Session["UserMail"];
-            id = c.Users.Where(x => x.UserMail == session).Select(y => y.UserID).FirstOrDefault();
+            int id = (int)Session["UserID"];
             var uservalue = userManager.GetByID(id);
             return View(uservalue);
         }
@@ -37,9 +36,7 @@ namespace SellUrCar.Controllers
             ValidationResult results = userValidator.Validate(user);
             if (results.IsValid)
             {
-                user.UserStatus = true;
                 userManager.UserUpdate(user);
-                return RedirectToAction("AllAdvert", "UserPanelAdvert");
             }
             else
             {

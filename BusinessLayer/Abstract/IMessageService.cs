@@ -9,12 +9,12 @@ namespace BusinessLayer.Abstract
 {
     public interface IMessageService
     {
-        List<Message> GetListInBox();
-        List<Message> GetListSendBox();
-        List<Message> GetListDraftBox();
-        List<Message> GetListReadMessages();
-        List<Message> GetListUnReadMessages();
-        List<Message> GetListTrashBox();
+        List<Message> GetListInBox(string mail);
+        List<Message> GetListSendBox(string mail);
+        List<Message> GetListDraftBox(string mail);
+        List<Message> GetListReadMessages(string mail);
+        List<Message> GetListUnReadMessages(string mail);
+        List<Message> GetListTrashBox(string mail);
 
         void MessageAddBL(Message message);
 

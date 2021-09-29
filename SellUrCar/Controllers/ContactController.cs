@@ -36,27 +36,28 @@ namespace SellUrCar.Controllers
             var countContact = contactvalues.Count();
             ViewBag.countContact = countContact;
 
-            var inboxvalues = messageManager.GetListInBox();
+            string mail = (string)Session["UserMail"];
+            var inboxvalues = messageManager.GetListInBox(mail);
             var countInbox = inboxvalues.Count();
             ViewBag.countInbox = countInbox;
 
-            var readvalues = messageManager.GetListReadMessages();
+            var readvalues = messageManager.GetListReadMessages(mail);
             var countRead = readvalues.Count();
             ViewBag.countRead = countRead;
 
-            var unreadvalues = messageManager.GetListUnReadMessages();
+            var unreadvalues = messageManager.GetListUnReadMessages(mail);
             var countUnRead = unreadvalues.Count();
             ViewBag.countUnRead = countUnRead;
 
-            var sendboxvalues = messageManager.GetListSendBox();
+            var sendboxvalues = messageManager.GetListSendBox(mail);
             var countSendbox = sendboxvalues.Count();
             ViewBag.countSendbox = countSendbox;
 
-            var draftboxvalues = messageManager.GetListDraftBox();
+            var draftboxvalues = messageManager.GetListDraftBox(mail);
             var countDraftbox = draftboxvalues.Count();
             ViewBag.countDraftbox = countDraftbox;
 
-            var trashboxvalues = messageManager.GetListTrashBox();
+            var trashboxvalues = messageManager.GetListTrashBox(mail);
             var countTrashbox = trashboxvalues.Count();
             ViewBag.countTrashbox = countTrashbox;
 

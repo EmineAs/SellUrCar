@@ -137,45 +137,19 @@ to get the desired effect
         </div>
         <!-- /.content-wrapper -->
     </div>
+
     <!-- ./wrapper -->
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
-    @*<script src="~/AdminLTE-3.0.4/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>*@
-    <script src="~/AdminLTE-3.0.4/jquery/jquery.min.js"></script>
+    <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI -->
-    @*<script src="~/AdminLTE-3.0.4/AdminLTE-3.0.4/plugins/jquery-ui/jquery-ui.min.js"></script>*@
     <script src="~/AdminLTE-3.0.4/jquery-ui/jquery-ui.min.js"></script>
     <!-- Ekko Lightbox -->
-    @*<script src="~/AdminLTE-3.0.4/AdminLTE-3.0.4/plugins/ekko-lightbox/ekko-lightbox.min.js"></script>*@
     <script src="~/AdminLTE-3.0.4/ekko-lightbox/ekko-lightbox.min.js"></script>
     <!-- AdminLTE App -->
-    @*<script src="~/AdminLTE-3.0.4/AdminLTE-3.0.4/dist/js/adminlte.min.js"></script>*@
     <script src="~/AdminLTE-3.0.4/dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
-    @*<script src="~/AdminLTE-3.0.4/AdminLTE-3.0.4/dist/js/demo.js"></script>*@
     <script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
-    <!-- Filterizr-->
-    @*<script src="~/AdminLTE-3.0.4/AdminLTE-3.0.4/plugins/filterizr/jquery.filterizr.min.js"></script>*@
-
-    <!-- Page specific script -->
-    <script>
-        $(function () {
-            $(document).on('click', '[data-toggle="lightbox"]', function (event) {
-                event.preventDefault();
-                $(this).ekkoLightbox({
-                    alwaysShowClose: true
-                });
-            });
-
-            $('.filter-container').filterizr({ gutterPixels: 3 });
-            $('.btn[data-filter]').on('click', function () {
-                $('.btn[data-filter]').removeClass('active');
-                $(this).addClass('active');
-            });
-        })</script>
-
-    <!-- jQuery -->
-    <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="~/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE -->
@@ -188,20 +162,42 @@ to get the desired effect
     @RenderSection("JavaScriptAlt", false)
 
 
-     @*Bootstrap*@
+<!-- Filterizr-->
+<!-- Page specific script -->
+<script>
+    $(function () {
+        $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+            event.preventDefault();
+            $(this).ekkoLightbox({
+                alwaysShowClose: true
+            });
+        });
 
-    @*icheck-mailbox-->*@
-    <script src="~/AdminLTE-3.0.4/plugins/icheck-bootstrap/icheck-mailbox.js"></script>
-    @*Summernote*@
-    <script src="~/AdminLTE-3.0.4/AdminLTE-3.0.4/plugins/summernote/summernote-bs4.min.js"></script>
-    <script src="~/AdminLTE-3.0.4/summernote/summernote-bs4.min.js"></script>
-    @*Page Script*@
-    <script>
-        $(function () {
-            //Add text editor
-            $('#compose-textarea').summernote()
-        })
-    </script>
-    @RenderSection("Editor", false)
+        $('.filter-container').filterizr({ gutterPixels: 3 });
+        $('.btn[data-filter]').on('click', function () {
+            $('.btn[data-filter]').removeClass('active');
+            $(this).addClass('active');
+        });
+    })</script>
+
+
+@RenderSection("JavaScriptAlt", false)
+
+
+@*Bootstrap*@
+
+@*icheck-mailbox-->*@
+<script src="~/AdminLTE-3.0.4/plugins/icheck-bootstrap/icheck-mailbox.js"></script>
+@*Summernote*@
+<script src="~/AdminLTE-3.0.4/plugins/summernote/summernote-bs4.min.js"></script>
+<script src="~/AdminLTE-3.0.4/summernote/summernote-bs4.min.js"></script>
+@*Page Script*@
+<script>
+    $(function () {
+        //Add text editor
+        $('#compose-textarea').summernote()
+    })
+</script>
+@RenderSection("Editor", false)
 </body>
 </html>

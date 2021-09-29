@@ -20,38 +20,48 @@ namespace SellUrCar.Controllers
         //[Authorize]
         public ActionResult Inbox()
         {
-            var messageList = messageManager.GetListInBox();
+            string mail = (string)Session["UserMail"];
+            var messageList = messageManager.GetListInBox(mail);
             return View(messageList);
         }
 
         public ActionResult ReadMessages()
         {
-            var messageList = messageManager.GetListReadMessages();
+            string mail = (string)Session["UserMail"];
+
+            var messageList = messageManager.GetListReadMessages(mail);
             return View("Inbox", messageList);
         }
 
         public ActionResult UnReadMessages()
         {
-            var messageList = messageManager.GetListUnReadMessages();
+            string mail = (string)Session["UserMail"];
+
+            var messageList = messageManager.GetListUnReadMessages(mail);
             return View("Inbox", messageList);
         }
 
         public ActionResult Sendbox()
         {
+            string mail = (string)Session["UserMail"];
 
-            var messageList = messageManager.GetListSendBox();
+            var messageList = messageManager.GetListSendBox(mail);
             return View(messageList);
         }
 
         public ActionResult Draftbox()
         {
-            var messageList = messageManager.GetListDraftBox();
+            string mail = (string)Session["UserMail"];
+
+            var messageList = messageManager.GetListDraftBox(mail);
             return View(messageList);
         }
 
         public ActionResult Trashbox()
         {
-            var messageList = messageManager.GetListTrashBox();
+            string mail = (string)Session["UserMail"];
+
+            var messageList = messageManager.GetListTrashBox(mail);
             return View(messageList);
         }
 

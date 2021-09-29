@@ -23,21 +23,21 @@ namespace BusinessLayer.Concrete
             return _messageDal.Get(x => x.MessageID == id);
         }
 
-        public List<Message> GetListInBox()
+        public List<Message> GetListInBox(string mail)
         {
-            return _messageDal.List(x => x.ReceiverMail == "admin@gmail.com" && x.MessageStatus==true);
+            return _messageDal.List(x => x.ReceiverMail == mail && x.MessageStatus==true);
 
         }
 
-        public List<Message> GetListSendBox()
+        public List<Message> GetListSendBox(string mail)
         {
 
-            return _messageDal.List(x => x.SenderMail == "admin@gmail.com" && x.Draft == false && x.MessageStatus == true);
+            return _messageDal.List(x => x.SenderMail == mail && x.Draft == false && x.MessageStatus == true);
         }
 
-        public List<Message> GetListDraftBox()
+        public List<Message> GetListDraftBox(string mail)
         {
-            return _messageDal.List(x => x.SenderMail == "admin@gmail.com" && x.Draft == true && x.MessageStatus == true);
+            return _messageDal.List(x => x.SenderMail == mail && x.Draft == true && x.MessageStatus == true);
         }
 
         public void MessageAddBL(Message message)
@@ -62,20 +62,20 @@ namespace BusinessLayer.Concrete
             _messageDal.Update(message);
         }
 
-        public List<Message> GetListReadMessages()
+        public List<Message> GetListReadMessages(string mail)
         {
-            return _messageDal.List(x => x.ReceiverMail == "admin@gmail.com" & x.Read == true && x.MessageStatus == true);
+            return _messageDal.List(x => x.ReceiverMail == mail && x.Read == true && x.MessageStatus == true);
 
         }
 
-        public List<Message> GetListUnReadMessages()
+        public List<Message> GetListUnReadMessages(string mail)
         {
-            return _messageDal.List(x => x.ReceiverMail == "admin@gmail.com" & x.Read == false && x.MessageStatus == true);
+            return _messageDal.List(x => x.ReceiverMail == mail && x.Read == false && x.MessageStatus == true);
         }
 
-        public List<Message> GetListTrashBox()
+        public List<Message> GetListTrashBox(string mail)
         {
-            return _messageDal.List(x => x.MessageStatus == false);
+            return _messageDal.List(x => (x.ReceiverMail==mail || x.SenderMail==mail) &&  x.MessageStatus == false);
         }
     }
 }
