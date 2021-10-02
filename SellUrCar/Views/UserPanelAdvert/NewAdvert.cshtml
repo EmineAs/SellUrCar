@@ -7,54 +7,132 @@
 
 <h1>Yeni İlan Ekleme</h1>
 <br />
+
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 
 @using (Html.BeginForm("NewAdvert", "UserPanelAdvert", FormMethod.Post))
 {
-<div class="form-group">
-    <div style="text-align:right">
-        @Html.Label(@DateTime.Now.ToString("dd-MMM-yyyy"))
+    <div class="form-group">
+        <div style="text-align:right">
+            @Html.Label(@DateTime.Now.ToString("dd-MMM-yyyy"))
+        </div>
+        <table class="table table-hover">
+            <tr>
+                <th width="10%">
+                    İlan Başlığı
+                </th>
+                <td>
+                    @Html.TextBoxFor(x => x.AdvertTitle, new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr>
+                <th width="10%">
+                    İl
+                </th>
+                <td>
+                    @Html.DropDownListFor(x => x.CityID, (List<SelectListItem>)ViewBag.city, "-- İl Seçiniz  --", new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr>
+                <th width="10%">
+                    İlçe
+                </th>
+                <td>
+                    @Html.DropDownListFor(x => x.DistrictID, new SelectList(string.Empty, "Value", "Text"), "-- İlçe Seçiniz --", new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr>
+                <th width="10%">
+                    Marka
+                </th>
+                <td>
+                    @Html.DropDownListFor(x => x.BrandID, (List<SelectListItem>)ViewBag.brand, "-- Marka Seçiniz  --", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(x => x.Brand.BrandName, "", new { @style = "color:red" })
+                </td>
+            </tr>
+            <tr>
+                <th width="10%">
+                    Seri
+                </th>
+                <td>
+                    @Html.DropDownListFor(x => x.SerialID, new SelectList(string.Empty, "Value", "Text"), "-- Seri Seçiniz --", new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr>
+                <th width="10%">
+                    Model
+                </th>
+                <td>
+                    @Html.DropDownListFor(x => x.ModelID, new SelectList(string.Empty, "Value", "Text"), "-- Model Seçiniz --", new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr>
+                <th width="10%">
+                    Yakıt Tipi
+                </th>
+                <td>
+                    @Html.DropDownListFor(x => x.FuelID, (List<SelectListItem>)ViewBag.fuel, "-- Yakıt Tipi Seçiniz --", new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr>
+                <th width="10%">
+                    Vites Tipi
+                </th>
+                <td>
+                    @Html.DropDownListFor(x => x.GearID, (List<SelectListItem>)ViewBag.gear, "-- Vites Tipi Seçiniz --", new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr>
+                <th width="10%">
+                    Renk
+                </th>
+                <td>
+                    @Html.TextBoxFor(x => x.Color, new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr>
+                <th width="10%">
+                    Kilometresi
+                </th>
+                <td>
+                    @Html.TextBoxFor(x => x.CurrentMilage, new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr>
+                <th width="10%">
+                    Motor Hacmi
+                </th>
+                <td>
+                    @Html.TextBoxFor(x => x.EnginValume, new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr>
+                <th width="10%">
+                    Motor Gücü
+                </th>
+                <td>
+                    @Html.TextBoxFor(x => x.EnginPower, new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr>
+                <th width="10%">
+                    Fiyatı
+                </th>
+                <td>
+                    @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+                </td>
+            </tr>
+            <tr>
+                <th width="10%">
+                    Açıklama
+                </th>
+                <td>
+                    @Html.TextAreaFor(x => x.AdDescription, new { @class = "form-control" })
+                </td>
+            </tr>
+        </table>
+        <button class="btn btn-info">Kaydet</button>
     </div>
-    <br />
-    @Html.Label("İlan Başlığı")
-    @Html.TextBoxFor(x => x.AdvertTitle, new { @class = "form-control" })
-    <br />
-    @Html.Label("İl")
-    @Html.DropDownListFor(x => x.CityID, (List<SelectListItem>)ViewBag.city, "-- İl Seçiniz  --", new { @class = "form-control" })
-    <br />
-    @Html.Label("İlçe")
-    @Html.DropDownListFor(x => x.DistrictID, new SelectList(string.Empty, "Value", "Text"), "-- İlçe Seçiniz --", new { @class = "form-control" })
-    <br />
-    @Html.Label("Marka")
-    @Html.DropDownListFor(x => x.BrandID, (List<SelectListItem>)ViewBag.brand, "-- Marka Seçiniz  --", new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.Brand.BrandName,"", new { @style = "color:red" })
-    <br />
-    @Html.Label("Seri")
-    @Html.DropDownListFor(x => x.SerialID, new SelectList(string.Empty, "Value", "Text"), "-- Seri Seçiniz --", new { @class = "form-control" })
-    <br />
-    @Html.Label("Model")
-    @Html.DropDownListFor(x => x.ModelID, new SelectList(string.Empty, "Value", "Text"), "-- Model Seçiniz --", new { @class = "form-control" })
-    <br />
-    @Html.Label("Model Yılı")
-    @Html.TextBoxFor(x => x.ModelYear, new { @class = "form-control" })
-    <br />
-    @Html.Label("Yakıt Tipi")
-    @Html.DropDownListFor(x => x.FuelID, (List<SelectListItem>)ViewBag.fuel, new { @class = "form-control" })
-    <br />
-    @Html.Label("Vites Tipi")
-    @Html.DropDownListFor(x => x.GearID, (List<SelectListItem>)ViewBag.gear, new { @class = "form-control" })
-    <br />
-    @Html.Label("Renk")
-    @Html.DropDownListFor(x => x.ColorID, (List<SelectListItem>)ViewBag.color, new { @class = "form-control" })
-    <br />
-    @Html.Label("Fiyatı")
-    @Html.TextBoxFor(x => x.Price,  new { @class = "form-control" })
-    <br />
-    @Html.Label("Açıklama")
-    @Html.TextAreaFor(x => x.AdvertDetail, new { @class = "form-control" })
-    <br />
-    <button class="btn btn-info">Kaydet</button>
-</div>
 }
 <script type="text/javascript">
     $(document).ready(function () {
@@ -111,28 +189,28 @@
 </script>
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        //İl seçilince
-        $("#CityID").change(function () {
-            $("#DistrictID").empty();
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("GetDistrict")', // GetDistrict metoduna git
-                dataType: 'json',
-                data: { id: $("#CityID").val() },
-                // CityID'ye göre veri getir.
+        $(document).ready(function () {
+            //İl seçilince
+            $("#CityID").change(function () {
+                $("#DistrictID").empty();
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetDistrict")', // GetDistrict metoduna git
+                    dataType: 'json',
+                    data: { id: $("#CityID").val() },
+                    // CityID'ye göre veri getir.
 
-                success: function (states) {
-                    $.each(states, function (i, state) {
-                        $("#DistrictID").append('<option value="' + state.Value + '">' +
-                             state.Text + '</option>');
-                    });
-                },
-                error: function (ex) {
-                    alert('Veri bulunamadı.' + ex);
-                }
-            });
-            return false;
-        })
-    });
-</script>
+                    success: function (states) {
+                        $.each(states, function (i, state) {
+                            $("#DistrictID").append('<option value="' + state.Value + '">' +
+                                 state.Text + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Veri bulunamadı.' + ex);
+                    }
+                });
+                return false;
+            })
+        });
+    </script>

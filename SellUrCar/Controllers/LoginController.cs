@@ -1,4 +1,6 @@
-﻿using DataAccessLayer.Concrete;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,8 @@ namespace SellUrCar.Controllers
     public class LoginController : Controller
     {
         Context c = new Context();
+        UserManager usermanager = new UserManager(new EfUserDal());
+
         // GET: Login
         [HttpGet]
         public ActionResult AdminLogin()
@@ -45,7 +49,7 @@ namespace SellUrCar.Controllers
         [HttpPost]
         public ActionResult UserLogIn(User user)
         {
-            var userinfo = c.Users.FirstOrDefault(x => x.UserMail == user.UserMail && x.UserPassWord == user.UserPassWord);
+            var userinfo = c.Users.FirstOrDefault(x => x.UserMail == user.UserMail && x.UserPassWord == user.UserPassWord && x.UserStatus ==true);
             if (userinfo != null)
             {
                 FormsAuthentication.SetAuthCookie(userinfo.UserName, false);

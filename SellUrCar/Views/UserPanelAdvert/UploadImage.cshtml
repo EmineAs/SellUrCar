@@ -11,9 +11,8 @@
 @using (Html.BeginForm("UploadImage", "UserPanelAdvert", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
 <div class="form-group">
-    <input type="text" name="BrandID" class="form-control" value="@ViewBag.id" />
+    <input type="hidden" name="BrandID" class="form-control" value="@ViewBag.id" />
     <br />
-    @*@Html.TextBoxFor(x => x.ImageName, htmlAttributes: new { @class = "control-label col-md-2" })*@
     <br />
     <div class="col-md-10">
         @Html.EditorFor(x => x.ImagePath, new { htmlAttributes = new { @class = "form-control", type = "file", multiple = "true" } })

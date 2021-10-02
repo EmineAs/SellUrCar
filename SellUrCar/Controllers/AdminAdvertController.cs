@@ -11,7 +11,7 @@ using EntityLayer.Concrete;
 using PagedList;
 using PagedList.Mvc;
 
-namespace MvcProjeKampi.Controllers
+namespace SellUrCar.Controllers
 {
     //[AllowAnonymous] //Herkesin girebileceği sayfa yoksa sayfa açılmıyor
 
@@ -19,11 +19,11 @@ namespace MvcProjeKampi.Controllers
     {
 
         AdvertManager advertManager = new AdvertManager(new EfAdvertDal());
+        UserManager userManager = new UserManager(new EfUserDal());
         BrandManager brandManager = new BrandManager(new EfBrandDal());
         FuelManager fuelManager = new FuelManager(new EfFuelDal());
         GearManager gearManager = new GearManager(new EfGearDal());
         CityManager cityManager = new CityManager(new EfCityDal());
-        ColorManager colorManager = new ColorManager(new EfColorDal());
         ModelManager modelManager = new ModelManager(new EfModelDal());
         SerialManager serialManager = new SerialManager(new EfSerialDal());
         DistrictManager districtManager = new DistrictManager(new EfDistrictDal());
@@ -37,6 +37,22 @@ namespace MvcProjeKampi.Controllers
             return View(advertvalues);
         }
 
+        public ActionResult AdvertDetail(int id)
+        {
+            var advertvalues = advertManager.GetByID(id);
+            ViewBag.id = id;
+            return View(advertvalues);
+
+        }
+
+        public ActionResult UserAdvert(int? page, int id) //Buradaki int? page bos gelmeye karsi önlem amaclidir
+        {
+            var uservalues = userManager.GetByID(id);
+            var username = uservalues.UserName + " " + uservalues.UserSurName;
+            var advertvalues = advertManager.GetListByUserID(id).ToPagedList(page ?? 1, 7);
+            ViewBag.username = username;
+            return View(advertvalues);
+        }
 
         public PartialViewResult ImageByAdvert(int id)
         {

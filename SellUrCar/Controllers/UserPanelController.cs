@@ -20,9 +20,7 @@ namespace SellUrCar.Controllers
 
         UserValidator userValidator = new UserValidator();
 
-        Context c = new Context();
-
-        [HttpGet]
+       
         public ActionResult UserProfile()
         {
             int id = (int)Session["UserID"];
@@ -30,8 +28,16 @@ namespace SellUrCar.Controllers
             return View(uservalue);
         }
 
+        [HttpGet]
+        public ActionResult EditProfile()
+        {
+            int id = (int)Session["UserID"];
+            var uservalue = userManager.GetByID(id);
+            return View(uservalue);
+        }
+
         [HttpPost]
-        public ActionResult UserProfile(User user)
+        public ActionResult EditProfile(User user)
         {
             ValidationResult results = userValidator.Validate(user);
             if (results.IsValid)
@@ -45,7 +51,7 @@ namespace SellUrCar.Controllers
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
             }
-            return View();
+            return RedirectToAction("UserProfile","UserPanel");
         }
 
         public PartialViewResult UserPasswordChange(User user, string currentPassword, string newPassword)

@@ -1,0 +1,107 @@
+﻿@using EntityLayer.Concrete
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Advert>
+
+@{
+    ViewBag.Title = "Adverts";
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
+}
+
+<body class="hold-transition sidebar-mini">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="card">
+            @Html.Action("MenuPartial", "Default")
+
+            <div style="text-align:center">
+                <h1>Vitrin</h1>
+
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-striped projects">
+                    <thead>
+                        <tr>
+
+                            <th style="width: 10%">
+                                Resim
+                            </th>
+                            <th style="width: 20%">
+                                İlan Başlığı
+                            </th>
+                            <th style="width: 10%">
+                                İlan Tarihi
+                            </th>
+                            <th style="width: 10%">
+                                Model
+                            </th>
+                            <th style="width: 10%">
+                                Model Yılı
+                            </th>
+                            <th style="width: 10%">
+                                Fiyatı
+                            </th>
+                            <th style="width: 15%">
+                                İl/İlçe
+                            </th>
+                            <th style="width: 20%">
+                                Detaylar
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    @Html.Action("ImageByAdvert", "Default", new { id = item.AdID })
+
+                                </td>
+                                <td>
+                                    @item.AdvertTitle
+                                </td>
+                                <td>
+                                    @(((DateTime)item.AdvertDate).ToString("dd-MMM-yyyy"))
+                                </td>
+                                <td>
+                                    @item.Brand.BrandName @item.Serial.SerialName @item.Model.ModelName
+                                </td>
+                                <td>
+                                    @item.ModelYear
+                                </td>
+                                <td>
+                                    @item.Price.ToString("c")
+                                </td>
+                                <td>
+                                    @item.City.CityName @item.District.DistrictName
+                                </td>
+                                <td>
+                                    <a href="/Default/AdvertDetail/@item.AdID" class="btn btn-primary">Detayları Gör</a>
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </section>
+
+
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Adverts", new { page }), new PagedListRenderOptions
+    {
+    LiElementClasses = new List<string>
+    { "page-link" }
+    })

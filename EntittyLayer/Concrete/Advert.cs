@@ -17,10 +17,13 @@ namespace EntityLayer.Concrete
         [StringLength(50)]
         public String AdvertTitle { get; set; }
 
-        public String AdvertDetail { get; set; }
+        public String AdDescription { get; set; }
 
         [StringLength(4)]
         public String ModelYear { get; set; }
+
+        [StringLength(50)]
+        public string Color { get; set; }
 
         [StringLength(6)]
         public string CurrentMilage { get; set; }
@@ -48,8 +51,7 @@ namespace EntityLayer.Concrete
         public int? GearID { get; set; }
         public virtual Gear Gear { get; set; }
 
-        public int? ColorID { get; set; }
-        public virtual Color Color { get; set; }
+      
 
         public int? CityID { get; set; }
         public virtual City City { get; set; }

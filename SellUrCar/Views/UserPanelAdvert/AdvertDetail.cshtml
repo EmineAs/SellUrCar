@@ -28,14 +28,11 @@
 <!-- Content Wrapper. Contains page content -->
 <!-- Main content -->
 <section class="content">
-
     <!-- Default box -->
     <div class="card card-solid">
         <div class="card-body">
             <div class="row">
                 <div class="col-12 col-sm-6">
-                    <h3 class="d-inline-block d-sm-none">jghfgf</h3>
-
                     <!-- Content Header (Page header) -->
                     <section class="content-header">
                         <div class="container-fluid">
@@ -47,29 +44,187 @@
                         </div><!-- /.container-fluid -->
                     </section>
                     @Html.Action("Gallery", "UserPanelGallery", new { id = ViewBag.id })
-
                 </div>
+                <div class="col-12 col-sm-4">
+                    <!-- Content Header (Page header) -->
+                    <section class="content-header">
+                        <div class="container-fluid">
+                            <div class="row mb-2">
+                                <div class="col-sm-6">
 
+                                </div>
+                            </div>
+                        </div><!-- /.container-fluid -->
+                    </section>
+                    <section class="content-header">
+                        <div class="container-fluid">
+                            <div class="row mb-2">
+                                <div class="col-sm-6">
+
+                                </div>
+                            </div>
+                        </div><!-- /.container-fluid -->
+                    </section>
+                    <section class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-10">
+                                    <div class="card card-primary">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                İlan Detayı
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <table class="table table-hover">
+                                                        <tr>
+                                                            <th>
+                                                                @Model.Price.ToString("c")
+                                                            </th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                @Model.City.CityName/@Model.District.DistrictName
+                                                            </th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                İlan Tarihi
+                                                            </th>
+                                                            <td>
+                                                                @(((DateTime)Model.AdvertDate).ToString("dd-MMM-yyyy"))
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                Model Yılı
+                                                            </th>
+                                                            <td>
+                                                                @Model.ModelYear
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                Marka
+                                                            </th>
+                                                            <td>
+                                                                @Model.Brand.BrandName
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                Seri
+                                                            </th>
+                                                            <td>
+                                                                @Model.Serial.SerialName
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                Model
+                                                            </th>
+                                                            <td>
+                                                                @Model.Model.ModelName
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                Kilometresi
+                                                            </th>
+                                                            <td>
+                                                                @Model.CurrentMilage
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                Motor Hacmi
+                                                            </th>
+                                                            <td>
+                                                                @Model.EnginValume
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                Motor Gücü
+                                                            </th>
+                                                            <td>
+                                                                @Model.EnginPower
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                Yakıt Tipi
+                                                            </th>
+                                                            <td>
+                                                                @Model.Fuel.FuelType
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                Vites Tipi
+                                                            </th>
+                                                            <td>
+                                                                @Model.Gear.GearType
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>
+                                                                Rengi
+                                                            </th>
+                                                            <td>
+                                                                @Model.Color
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.container-fluid -->
+                    </section>
+                </div>
                 <div class="col-12 col-sm-2">
-                    <br /> <br /><br />
-                    <b>
-                        <h3 class="my-3">@Model.Price.ToString("c")</h3>
-                    </b>
+                    <!-- Content Header (Page header) -->
+                    <section class="content-header">
+                        <div class="container-fluid">
+                            <div class="row mb-2">
+                                <div class="col-sm-6">
 
-                </div>
+                                </div>
+                            </div>
+                        </div><!-- /.container-fluid -->
+                    </section>
+                    <section class="content-header">
+                        <div class="container-fluid">
+                            <div class="row mb-2">
+                                <div class="col-sm-6">
 
-                <div class="col-sm-4">
-                    <br /> <br /><br />
-                    <b>
-                        @Html.Action("UserContact", "UserPanelAdvert", new { id = Model.UserID })
-                    </b>
-
+                                </div>
+                            </div>
+                        </div><!-- /.container-fluid -->
+                    </section>
+                    @Html.Action("UserContact", "UserPanelAdvert", new { id = Model.UserID })
                 </div>
             </div>
-            <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
 
+            <div class="row mt-4">
+                <nav class="w-100">
+                    <div class="nav nav-tabs" id="product-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="true">Açıklama</a>
+                    </div>
+                </nav>
+                <div class="tab-content p-3" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="product-desc" role="tabpanel" aria-labelledby="product-desc-tab"> 
+                        @Model.AdDescription
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </section>
 <!-- /.content -->
 <!-- jQuery -->

@@ -58,7 +58,6 @@
     <Compile Include="Abstract\IAdvertService.cs" />
     <Compile Include="Abstract\IBrandService.cs" />
     <Compile Include="Abstract\ICityService.cs" />
-    <Compile Include="Abstract\IColorService.cs" />
     <Compile Include="Abstract\IContactService.cs" />
     <Compile Include="Abstract\IDistrictService.cs" />
     <Compile Include="Abstract\IFuelService.cs" />
@@ -72,7 +71,6 @@
     <Compile Include="Concrete\AdvertManager.cs" />
     <Compile Include="Concrete\BrandManager.cs" />
     <Compile Include="Concrete\CityManager.cs" />
-    <Compile Include="Concrete\ColorManager.cs" />
     <Compile Include="Concrete\ContactManager.cs" />
     <Compile Include="Concrete\DistrictManager.cs" />
     <Compile Include="Concrete\FuelManager.cs" />
@@ -86,7 +84,6 @@
     <Compile Include="ValidationRules\AdvertValidator.cs" />
     <Compile Include="ValidationRules\BrandValidator.cs" />
     <Compile Include="ValidationRules\CityValidator.cs" />
-    <Compile Include="ValidationRules\ColorValidator.cs" />
     <Compile Include="ValidationRules\ContactValidator.cs" />
     <Compile Include="ValidationRules\DistrictValidator.cs" />
     <Compile Include="ValidationRules\MessageValidator.cs" />

@@ -7,32 +7,40 @@
 }
 
 <br />
-<h2>Profilinizi Düzenleyin</h2>
+<h2>Profiliniz</h2>
 
 @using (Html.BeginForm("UserProfile", "UserPanel", FormMethod.Post))
 {
 <div class="form-group">
-
-    <img src="@Model.UserImage" width="80" height="60" /><br />
-    @Html.Label("Kullanıcı Görsel Linki")
-    @Html.TextBoxFor(x => x.UserImage, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.UserImage)
     <br />
-    @Html.Label("Kullanıcı Adı")
-    @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.UserName, null, new { @class = "text-danger" })
+    <img src="@Model.UserImage" width="150" height="120" /><br />
     <br />
-    @Html.Label("Kullanıcı Soyadı")
-    @Html.TextBoxFor(x => x.UserSurName, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.UserSurName, null, new { @class = "text-danger" })
-    <br />
-    @Html.Label("Kullanıcı Maili")
-    @Html.DisplayFor(x => x.UserMail, new { @class = "form-control" })
-    <br />
-    @Html.Label("Kullanıcı Telefonu")
-    @Html.TextBoxFor(x => x.UserPhoneNumber, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.UserPhoneNumber, null, new { @class = "text-danger" })
-    <br />
-    <button class="btn btn-success">Güncelle</button>
+    <table class="table d-xxl-table-row">
+        <tr>
+            <th width="10%">
+                Kullanıcı Adı
+            </th>
+            <td>
+                @Model.UserName @Model.UserSurName
+            </td>
+        </tr>
+        <tr>
+            <th width="10%">
+                Mail
+            </th>
+            <td>
+                @Model.UserMail
+            </td>
+        </tr>
+        <tr>
+            <th width="10%">
+                Telefon
+            </th>
+            <td>
+                @Model.UserPhoneNumber
+            </td>
+        </tr>
+    </table>
+    <a href="/UserPanel/EditProfile/" class="btn btn-primary">Profil Düzenle</a>
 </div>
 }

@@ -22,7 +22,6 @@ namespace SellUrCar.Controllers
         FuelManager fuelManager = new FuelManager(new EfFuelDal());
         GearManager gearManager = new GearManager(new EfGearDal());
         CityManager cityManager = new CityManager(new EfCityDal());
-        ColorManager colorManager = new ColorManager(new EfColorDal());
         ImageFileManager imageFileManager = new ImageFileManager(new EfImageFileDal());
         SerialManager serialManager = new SerialManager(new EfSerialDal());
         ModelManager modelManager = new ModelManager(new EfModelDal());
@@ -72,14 +71,8 @@ namespace SellUrCar.Controllers
                                                   Value = x.CityID.ToString()
                                               }).ToList();
 
-            List<SelectListItem> valueColor = (from x in colorManager.GetList()
-                                               select new SelectListItem
-                                               {
-                                                   Text = x.ColorName,
-                                                   Value = x.ColorID.ToString()
-                                               }).ToList();
+           
 
-            ViewBag.color = valueColor;
             ViewBag.brand = valueBrand;
             ViewBag.fuel = valueFuel;
             ViewBag.gear = valueGear;
@@ -144,14 +137,6 @@ namespace SellUrCar.Controllers
                                                   Value = x.CityID.ToString()
                                               }).ToList();
 
-            List<SelectListItem> valueColor = (from x in colorManager.GetList()
-                                               select new SelectListItem
-                                               {
-                                                   Text = x.ColorName,
-                                                   Value = x.ColorID.ToString()
-                                               }).ToList();
-
-            ViewBag.color = valueColor;
             ViewBag.brand = valueBrand;
             ViewBag.fuel = valueFuel;
             ViewBag.gear = valueGear;
@@ -191,6 +176,7 @@ namespace SellUrCar.Controllers
             return View(advertvalues);
 
         }
+
         public PartialViewResult UserContact(int id)
         {
             var uservalues = userManager.GetByID(id);
@@ -229,7 +215,6 @@ namespace SellUrCar.Controllers
                 image.ImageName = image.AdID + "araba" + i;
                 image.ImagePath = filename;
                 imageFileManager.ImageAddBL(image);
-
                 i++;
             }
             return RedirectToAction("MyAdvert");

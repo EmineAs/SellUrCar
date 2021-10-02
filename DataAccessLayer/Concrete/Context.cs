@@ -21,7 +21,6 @@ namespace DataAccessLayer.Concrete
         public DbSet<Model> Models { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Serial> Serials { get; set; }
-        public DbSet<Color> Colors { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Admin> Admins { get; set; }
 

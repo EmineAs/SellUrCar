@@ -23,17 +23,17 @@
     @Html.DropDownListFor(x => x.CityID, (List<SelectListItem>)ViewBag.city, new { @class = "form-control" })
     <br />
     @Html.Label("İlçe")
-    @Html.DropDownListFor(x => x.DistrictID, new SelectList(string.Empty, "Value", "Text"),  new { @class = "form-control" })
+    @Html.DropDownListFor(x => x.DistrictID, new SelectList(string.Empty, "Value", "Text"), new { @class = "form-control" })
     <br />
     @Html.Label("Marka")
     @Html.DropDownListFor(x => x.BrandID, (List<SelectListItem>)ViewBag.brand, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.BrandID,"", new { @style = "color:red" })
+    @Html.ValidationMessageFor(x => x.BrandID, "", new { @style = "color:red" })
     <br />
     @Html.Label("Seri")
     @Html.DropDownListFor(x => x.SerialID, new SelectList(string.Empty, "Value", "Text"), new { @class = "form-control" })
     <br />
     @Html.Label("Model")
-    @Html.DropDownListFor(x => x.ModelID, new SelectList(string.Empty, "Value", "Text"),  new { @class = "form-control" })
+    @Html.DropDownListFor(x => x.ModelID, new SelectList(string.Empty, "Value", "Text"), new { @class = "form-control" })
     <br />
     @Html.Label("Model Yılı")
     @Html.TextBoxFor(x => x.ModelYear, new { @class = "form-control" })
@@ -45,13 +45,13 @@
     @Html.DropDownListFor(x => x.GearID, (List<SelectListItem>)ViewBag.gear, new { @class = "form-control" })
     <br />
     @Html.Label("Renk")
-    @Html.DropDownListFor(x => x.ColorID, (List<SelectListItem>)ViewBag.color, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.Color, new { @class = "form-control" })
     <br />
     @Html.Label("Fiyatı")
-    @Html.TextBoxFor(x => x.Price,  new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
     <br />
     @Html.Label("Açıklama")
-    @Html.TextAreaFor(x => x.AdvertDetail, new { @class = "form-control" })
+    @Html.TextAreaFor(x => x.AdDescription, new { @class = "form-control" })
     <br />
     <button class="btn btn-info">Kaydet</button>
 </div>

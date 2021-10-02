@@ -1,0 +1,127 @@
+﻿@using EntityLayer.Concrete
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Advert>
+
+@{
+    ViewBag.Title = "UserAdvert";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<body class="hold-transition sidebar-mini">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">@ViewBag.username Kullanıcısının İlanları</h3>
+                <br/>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-striped projects">
+                    <thead>
+                        <tr>
+
+                            <th style="width: 10%">
+                                Resim
+                            </th>
+                            <th style="width: 10%">
+                                İlan Başlığı
+                            </th>
+                            <th style="width: 10%">
+                                İlan Tarihi
+                            </th>
+                            <th style="width: 10%">
+                                Model
+                            </th>
+                            <th style="width: 8%">
+                                Model Yılı
+                            </th>
+                            <th style="width: 10%">
+                                Fiyatı
+                            </th>
+                            <th style="width: 10%">
+                                İl/İlçe
+                            </th>
+                            <th style="width: 10%">
+                                İlanı Düzenle
+                            </th>
+                            <th style="width: 10%">
+                                Görsel Ekle
+                            </th>
+                            <th style="width: 20%">
+                                Detaylar
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    @Html.Action("ImageByAdvert", "AdminAdvert", new { id = item.AdID })
+
+                                </td>
+                                <td>
+                                    @item.AdvertTitle
+                                </td>
+                                <td>
+                                    @(((DateTime)item.AdvertDate).ToString("dd-MMM-yyyy"))
+                                </td>
+                                <td>
+                                    @item.Brand.BrandName @item.Serial.SerialName @item.Model.ModelName
+                                </td>
+                                <td>
+                                    @item.ModelYear
+                                </td>
+                                <td>
+                                    @item.Price.ToString("c")
+                                </td>
+                                <td>
+                                    @item.City.CityName @item.District.DistrictName
+                                </td>
+                                <td>
+                                    <a href="/AdminAdvert/DeleteAdvert/@item.AdID" class="btn btn-danger">İlanı Kaldır</a>
+                                </td>
+                                
+                                <td>
+                                    <a href="/AdminAdvert/AdvertDetail/@item.AdID" class="btn btn-primary">Detayları Gör</a>
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+            <br />
+
+        </div>
+        <!-- /.card -->
+
+    </section>
+
+
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("UserAdvert", new { page }), new PagedListRenderOptions
+    {
+    LiElementClasses = new List<string>
+    { "page-link" }
+    })

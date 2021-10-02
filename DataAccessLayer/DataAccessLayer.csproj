@@ -55,7 +55,6 @@
     <Compile Include="Abstract\IAdvertDal.cs" />
     <Compile Include="Abstract\IBrandDal.cs" />
     <Compile Include="Abstract\ICityDal.cs" />
-    <Compile Include="Abstract\IColorDal.cs" />
     <Compile Include="Abstract\IContactDal.cs" />
     <Compile Include="Abstract\IDistrict.cs" />
     <Compile Include="Abstract\IFuelDal.cs" />
@@ -71,7 +70,6 @@
     <Compile Include="EntityFramework\EfAdvertDal.cs" />
     <Compile Include="EntityFramework\EfBrandDal.cs" />
     <Compile Include="EntityFramework\EfCityDal.cs" />
-    <Compile Include="EntityFramework\EfColorDal.cs" />
     <Compile Include="EntityFramework\EfContactDal.cs" />
     <Compile Include="EntityFramework\EfDistrictDal.cs" />
     <Compile Include="EntityFramework\EfFuelDal.cs" />
@@ -88,6 +86,14 @@
     <Compile Include="Migrations\202109271336495_edit_advert2.cs" />
     <Compile Include="Migrations\202109271336495_edit_advert2.designer.cs">
       <DependentUpon>202109271336495_edit_advert2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109301905386_edit_advert3.cs" />
+    <Compile Include="Migrations\202109301905386_edit_advert3.designer.cs">
+      <DependentUpon>202109301905386_edit_advert3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202109302135094_del_colorid.cs" />
+    <Compile Include="Migrations\202109302135094_del_colorid.designer.cs">
+      <DependentUpon>202109302135094_del_colorid.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -109,6 +115,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202109271336495_edit_advert2.resx">
       <DependentUpon>202109271336495_edit_advert2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109301905386_edit_advert3.resx">
+      <DependentUpon>202109301905386_edit_advert3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109302135094_del_colorid.resx">
+      <DependentUpon>202109302135094_del_colorid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

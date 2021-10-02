@@ -1,0 +1,42 @@
+﻿@model EntityLayer.Concrete.User
+
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<br />
+<h2>Profil Güncelleme Sayfası</h2>
+
+@using (Html.BeginForm("EditProfile", "UserPanel", FormMethod.Post))
+{
+<div class="form-group">
+    @Html.HiddenFor(x => x.UserID, new { @class = "form-control" })
+    @Html.HiddenFor(x => x.UserPassWord, new { @class = "form-control" })
+
+    <br />
+    <img src="@Model.UserImage" width="150" height="120" /><br />
+    @Html.Label("Kullanıcı Görsel Linki")
+    @Html.TextBoxFor(x => x.UserImage, new { @class = "form-control"})
+    @Html.ValidationMessageFor(x => x.UserImage, "", new { @style = "color:red" })
+    <br />
+    @Html.Label("Kullanıcı Adı")
+    @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.UserName, "", new { @style = "color:red" })
+    <br />
+    @Html.Label("Kullanıcı Soyadı")
+    @Html.TextBoxFor(x => x.UserSurName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.UserSurName, "", new { @style = "color:red" })
+    <br />
+    @Html.Label("Kullanıcı Maili")
+    @Html.TextBoxFor(x => x.UserMail, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.UserMail, "", new { @style = "color:red" })
+    <br />
+    @Html.Label("Kullanıcı Telefonu")
+    @Html.TextBoxFor(x => x.UserPhoneNumber, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.UserPhoneNumber, "", new { @style = "color:red" })
+    <br />
+
+    <button class="btn btn-info">Kaydet</button>
+</div>
+}

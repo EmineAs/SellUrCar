@@ -25,28 +25,29 @@
                 <div class="row d-flex align-items-stretch">
                     @foreach (var item in Model)
                     {
-                        <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
+                        <div class="col-12 col-sm-8 col-md-4 @*d-flex*@ align-items-stretch">
                             <div class="card bg-light">
                                 <div class="card-header text-muted border-bottom-0">
-                             
                                 </div>
                                 <div class="card-body pt-0">
                                     <div class="row">
-                                        <div class="col-7">
+                                        <div class="col-8">
                                             <h2 class="lead"><b>@item.UserName @item.UserSurName</b></h2>
+                                            <br />
                                             <ul class="ml-4 mb-0 fa-ul text-muted">
-                                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Mail: @item.UserMail</li>
-                                                <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span> Mail: @item.UserPhoneNumber</li>
+                                                <li><span class="fa-li"><i class="fas fa-lg fa-envelope"></i></span> Mail   : @item.UserMail</li>
+                                                <br />
+                                                <li><span class="fa-li"><i class="fas fa-lg fa-phone-alt"></i></span> Telefon: @item.UserPhoneNumber</li>
                                             </ul>
                                         </div>
                                         <div class="col-4 text-center">
-                                            <img src=@item.UserImage alt="" class="img-circle img-fluid">
+                                            <img src="@item.UserImage" alt="" class="img-circle img-fluid">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer">
                                     <div class="text-right">
-                                        <a href="/AdminAdvert/Index" class="btn btn-sm bg-teal">
+                                        <a href="/AdminAdvert/UserAdvert/@item.UserID" class="btn btn-sm bg-teal">
                                             <i class="fas fa-comments">Kullanıcı İlanları</i>
                                         </a>
                                         <a href="/AdminUser/DeleteUser/@item.UserID" class="btn btn-sm btn-danger">

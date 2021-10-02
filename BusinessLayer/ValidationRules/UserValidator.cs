@@ -20,7 +20,7 @@ namespace BusinessLayer.ValidationRules
             RuleFor(x => x.UserSurName).MaximumLength(20).WithMessage("Lütfen 20 karakterden fazla değer girişi yapmayın.");
             RuleFor(x => x.UserMail).EmailAddress().WithMessage("Geçerli bir e posta adresi giriniz");
             RuleFor(x => x.UserPassWord).NotEmpty().WithMessage("Lütfen şifre alanını doldurunuz");
-            RuleFor(x => x.UserPassWord).MinimumLength(8).WithMessage("Lütfen en az 8 karakter girişi yapın");
+            RuleFor(x => x.UserPassWord).MinimumLength(3).WithMessage("Lütfen en az 3 karakter girişi yapın");
             RuleFor(x => x.UserPhoneNumber).NotEmpty().WithMessage("Telefon numarası kısmını doldurunuz");
 
 
