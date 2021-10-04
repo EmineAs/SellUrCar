@@ -24,10 +24,11 @@ namespace SellUrCar.Controllers
             return View();
         }
 
-        public ActionResult DeleteAdmin(Admin admin)
+        public ActionResult DeleteAdmin(int id)
         {
-            adminManager.AdminDelete(admin);
-            return RedirectToAction("Index");
+            var adminValue = adminManager.GetByID(id);
+            adminManager.AdminDelete(adminValue);
+            return View();
         }
 
         public ActionResult AddAdmin()

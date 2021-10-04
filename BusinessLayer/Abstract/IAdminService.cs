@@ -11,6 +11,8 @@ namespace BusinessLayer.Abstract
     {
         List<Admin> GetList();
 
+        Admin GetByID(int id);
+
         void AdminAddBL(Admin admin);
 
         string GetHash(string data);

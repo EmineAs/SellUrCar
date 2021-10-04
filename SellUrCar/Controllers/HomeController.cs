@@ -37,7 +37,6 @@ namespace SellUrCar.Controllers
         public ActionResult Contact(Contact p)
         {
 
-            p.UserMail = "admin@gmail.com";
             p.ContactDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             p.ContactStatus = true;
             contactManager.ContactAddBL(p);

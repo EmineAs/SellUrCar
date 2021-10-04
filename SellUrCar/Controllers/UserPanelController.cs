@@ -54,11 +54,6 @@ namespace SellUrCar.Controllers
             return RedirectToAction("UserProfile","UserPanel");
         }
 
-        public PartialViewResult UserPasswordChange(User user, string currentPassword, string newPassword)
-        {
-            return PartialView();
-        }
-
 
     }
 }

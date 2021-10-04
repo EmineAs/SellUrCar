@@ -25,12 +25,17 @@ namespace BusinessLayer.Concrete
 
         public void AdminDelete(Admin admin)
         {
-            _adminDal.Update(admin);
+            _adminDal.Delete(admin);
         }
 
         public void AdminUpdate(Admin admin)
         {
             _adminDal.Update(admin);
+        }
+
+        public Admin GetByID(int id)
+        {
+            return _adminDal.Get(x => x.AdminID == id);
         }
 
         public string GetHash(string data)
