@@ -9,13 +9,9 @@ namespace BusinessLayer.Abstract
 {
     public interface IAdminService
     {
-        //List<Admin> GetList();
-
-        //List<Admin> GetActiveList();
+        List<Admin> GetList();
 
         void AdminAddBL(Admin admin);
-
-        //Admin GetByID(int id);
 
         string GetHash(string data);
 

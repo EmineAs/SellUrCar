@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace SellUrCar.Controllers
 {
+    [AllowAnonymous]
     public class ContactController : Controller
     {
         // GET: Contact

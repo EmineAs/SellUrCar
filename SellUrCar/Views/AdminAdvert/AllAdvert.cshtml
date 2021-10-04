@@ -40,13 +40,13 @@
                             <th style="width: 10%">
                                 Resim
                             </th>
-                            <th style="width: 20%">
+                            <th style="width: 10%">
                                 İlan Başlığı
                             </th>
                             <th style="width: 10%">
                                 İlan Tarihi
                             </th>
-                            <th style="width: 10%">
+                            <th style="width: 15%">
                                 Model
                             </th>
                             <th style="width: 10%">
@@ -55,46 +55,52 @@
                             <th style="width: 10%">
                                 Fiyatı
                             </th>
-                            <th style="width: 15%">
+                            <th style="width: 10%">
                                 İl/İlçe
                             </th>
-                            <th style="width: 20%">
+                            <th style="width: 15%">
                                 Detaylar
+                            </th>
+                            <th style="width: 20%">
+                                İlanı Kaldır
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
+                        <tr>
 
-                                <td>
-                                    @Html.Action("ImageByAdvert", "AdminAdvert", new { id = item.AdID })
+                            <td>
+                                @Html.Action("ImageByAdvert", "AdminAdvert", new { id = item.AdID })
 
-                                </td>
-                                <td>
-                                    @item.AdvertTitle
-                                </td>
-                                <td>
-                                    @(((DateTime)item.AdvertDate).ToString("dd-MMM-yyyy"))
-                                </td>
-                                <td>
-                                    @item.Brand.BrandName @item.Serial.SerialName @item.Model.ModelName
-                                </td>
-                                <td>
-                                    @item.ModelYear
-                                </td>
-                                <td>
-                                    @item.Price.ToString("c")
-                                </td>
-                                <td>
-                                    @item.City.CityName @item.District.DistrictName
-                                </td>
-                                <td>
-                                    <a href="/AdminAdvert/AdvertDetail/@item.AdID" class="btn btn-primary">Detayları Gör</a>
-                                </td>
+                            </td>
+                            <td>
+                                @item.AdvertTitle
+                            </td>
+                            <td>
+                                @(((DateTime)item.AdvertDate).ToString("dd-MMM-yyyy"))
+                            </td>
+                            <td>
+                                @item.Brand.BrandName @item.Serial.SerialName @item.Model.ModelName
+                            </td>
+                            <td>
+                                @item.ModelYear
+                            </td>
+                            <td>
+                                @item.Price.ToString("c")
+                            </td>
+                            <td>
+                                @item.City.CityName @item.District.DistrictName
+                            </td>
+                            <td>
+                                <a href="/AdminAdvert/AdvertDetail/@item.AdID" class="btn btn-primary">Detayları Gör</a>
+                            </td>
+                            <td>
+                                <a href="/AdminAdvert/DeleteAdvert/@item.AdID" class="btn btn-primary">İlanı Kaldır</a>
+                            </td>
 
-                            </tr>
+                        </tr>
                         }
                     </tbody>
                 </table>

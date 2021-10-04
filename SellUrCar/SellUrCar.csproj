@@ -142,6 +142,7 @@
     <Compile Include="Controllers\AdminModelController.cs" />
     <Compile Include="Controllers\AdminSerialController.cs" />
     <Compile Include="Controllers\AdminUserController.cs" />
+    <Compile Include="Controllers\AuthorizationController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\ErrorPageController.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\UserPanelAdvertController.cs" />
     <Compile Include="Controllers\UserPanelController.cs" />
     <Compile Include="Controllers\UserPanelGalleryController.cs" />
@@ -2638,6 +2640,7 @@
     <Content Include="AdminLTE-3.0.4\web\webfonts\fa-solid-900.ttf" />
     <Content Include="AdminLTE-3.0.4\web\webfonts\fa-solid-900.woff" />
     <Content Include="AdminLTE-3.0.4\web\webfonts\fa-solid-900.woff2" />
+    <Content Include="libman.json" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -2658,9 +2661,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\AdminAdvert\AllAdvert.cshtml" />
     <Content Include="Views\AdminBrand\AddBrandPartial.cshtml" />
     <Content Include="Views\AdminBrand\Index.cshtml" />
@@ -2670,7 +2670,6 @@
     <Content Include="Views\AdminModel\ModelBySerial.cshtml" />
     <Content Include="Views\AdminSerial\AddSerialPartial.cshtml" />
     <Content Include="Views\AdminSerial\SerialByBrand.cshtml" />
-    <Content Include="Views\AdminUser\AddUser.cshtml" />
     <Content Include="Views\AdminUser\Index.cshtml" />
     <Content Include="Views\AdminUser\PassiveUser.cshtml" />
     <Content Include="Views\Contact\ContactPartial.cshtml" />
@@ -2713,9 +2712,7 @@
     <Content Include="Views\AdminAdvert\AdvertDetail.cshtml" />
     <Content Include="Views\AdminAdvert\UserAdvert.cshtml" />
     <Content Include="Views\UserPanel\EditProfile.cshtml" />
-    <Content Include="Views\Home\ImageByAdvert.cshtml" />
     <Content Include="Views\Default\ImageByAdvert.cshtml" />
-    <Content Include="Views\Default\DefaultMenuPartial.cshtml" />
     <Content Include="Views\Default\Gallery.cshtml" />
     <Content Include="Views\Shared\_DefaultLayout.cshtml" />
     <Content Include="Views\Default\Adverts.cshtml" />
@@ -2723,6 +2720,11 @@
     <Content Include="Views\Default\AdvertDetail.cshtml" />
     <Content Include="Views\Default\UserContact.cshtml" />
     <Content Include="Views\Home\HomePage.cshtml" />
+    <Content Include="Views\AdminAdvert\AdvertReport.cshtml" />
+    <Content Include="Views\Authorization\Index.cshtml" />
+    <Content Include="Views\Admin\AddAdmin.cshtml" />
+    <Content Include="Views\Default\AdvertsByBrand.cshtml" />
+    <Content Include="Views\Register\UserRegister.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

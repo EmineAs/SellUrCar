@@ -37,10 +37,26 @@ namespace SellUrCar.Controllers
             return View(advertvalues);
         }
 
+        public ActionResult DeleteAdvert(int id)
+        {
+
+            var advertvalues = advertManager.GetByID(id);
+            var imagevalues = imageFileManager.GetListByAdID(id);
+            imageFileManager.ImageDelete(imagevalues);
+            advertManager.AdvertDelete(advertvalues);
+            return RedirectToAction( "AllAdvert");
+        }
+
         public ActionResult AdvertDetail(int id)
         {
             var advertvalues = advertManager.GetByID(id);
             ViewBag.id = id;
+            return View(advertvalues);
+
+        }
+        public ActionResult AdvertReport()
+        {
+            var advertvalues = advertManager.GetList();
             return View(advertvalues);
 
         }
@@ -64,50 +80,6 @@ namespace SellUrCar.Controllers
             }
             return PartialView();
         }
-
-        public JsonResult GetModel(int? id)
-        {
-
-            List<SelectListItem> valueModel = (from x in modelManager.GetList()
-                                               where x.SerialID == id
-                                               select new SelectListItem
-                                               {
-                                                   Text = x.ModelName,
-                                                   Value = x.ModelID.ToString()
-                                               }).ToList();
-
-            return Json(valueModel, JsonRequestBehavior.AllowGet);
-
-        }
-
-        public JsonResult GetSerial(int? id)
-        {
-
-            List<SelectListItem> valueSerial = (from x in serialManager.GetList()
-                                                where x.BrandID == id
-                                                select new SelectListItem
-                                                {
-                                                    Text = x.SerialName,
-                                                    Value = x.SerialID.ToString()
-                                                }).ToList();
-
-            return Json(valueSerial, JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult GetDistrict(int? id)
-        {
-
-            List<SelectListItem> valueDistrict = (from x in districtManager.GetList()
-                                                  where x.CityID == id
-                                                  select new SelectListItem
-                                                  {
-                                                      Text = x.DistrictName,
-                                                      Value = x.DistrictID.ToString()
-                                                  }).ToList();
-
-            return Json(valueDistrict, JsonRequestBehavior.AllowGet);
-        }
-
 
     }
 }

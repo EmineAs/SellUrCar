@@ -17,7 +17,6 @@ namespace SellUrCar.Controllers
         MessageManager messageManager = new MessageManager(new EfMessageDal());
         MessageValidator messagevalidator = new MessageValidator();
 
-        //[Authorize]
         public ActionResult Inbox()
         {
             string mail = (string)Session["UserMail"];

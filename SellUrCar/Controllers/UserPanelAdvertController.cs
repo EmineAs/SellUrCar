@@ -167,8 +167,7 @@ namespace SellUrCar.Controllers
             var advertpages = advertvalues.ToPagedList(page ?? 1, 8); //? işaretleri boş gelme/boş olma durumuna karşı önlem amaçlı,kacinci sayfadan baslasin, sayfada kac deger olsun anlamina gelmektedir.
             return View(advertpages);
         }
-
-
+      
         public ActionResult AdvertDetail(int id)
         {
             var advertvalues = advertManager.GetByID(id);

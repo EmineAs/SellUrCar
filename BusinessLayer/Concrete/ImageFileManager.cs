@@ -34,5 +34,14 @@ namespace BusinessLayer.Concrete
             _imageFileDal.Insert(image);
 
         }
+
+        public void ImageDelete(List<ImageFile> image)
+        {
+            foreach (var item in image)
+            {
+                _imageFileDal.Delete(item);
+            }
+            
+        }
     }
 }

@@ -14,8 +14,9 @@ namespace SellUrCar.Controllers
     [AllowAnonymous] //Herkesin girebileceği sayfa yoksa sayfa açılmıyor
     public class LoginController : Controller
     {
-        Context c = new Context();
         UserManager usermanager = new UserManager(new EfUserDal());
+        UserLoginManager userloginmanager = new UserLoginManager(new EfUserDal());
+        AdminLoginManager adminloginmanager = new AdminLoginManager(new EfAdminDal());
 
         // GET: Login
         [HttpGet]
@@ -27,7 +28,7 @@ namespace SellUrCar.Controllers
         [HttpPost]
         public ActionResult AdminLogin(Admin p)
         {
-            var adminuserinfo = c.Admins.FirstOrDefault(x => x.AdminMail == p.AdminMail && x.AdminPassword == p.AdminPassword);
+            var adminuserinfo = adminloginmanager.GetAdmin(p.AdminMail, p.AdminPassword);
             if (adminuserinfo != null)
             {
                 FormsAuthentication.SetAuthCookie(adminuserinfo.AdminMail, false);
@@ -49,7 +50,8 @@ namespace SellUrCar.Controllers
         [HttpPost]
         public ActionResult UserLogIn(User user)
         {
-            var userinfo = c.Users.FirstOrDefault(x => x.UserMail == user.UserMail && x.UserPassWord == user.UserPassWord && x.UserStatus ==true);
+            var userinfo = userloginmanager.GetUser(user.UserMail, user.UserPassWord);
+                
             if (userinfo != null)
             {
                 FormsAuthentication.SetAuthCookie(userinfo.UserName, false);

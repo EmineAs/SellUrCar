@@ -1,5 +1,7 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
+using FluentValidation.Results;
 using PagedList;
 using PagedList.Mvc;
 using System;
@@ -17,42 +19,31 @@ namespace SellUrCar.Controllers
 
         AdvertManager advertManager = new AdvertManager(new EfAdvertDal());
         ImageFileManager imageFileManager = new ImageFileManager(new EfImageFileDal());
+        ContactManager contactManager = new ContactManager(new EfContactDal());
 
         public ActionResult HomePage()
         {
             return View();
         }
-       
-    //    public ActionResult Index(int? page) //Buradaki int? page bos gelmeye karsi önlem amaclidir
-    //    {
-    //        var advertvalues = advertManager.GetList();
-    //        var advertpages = advertvalues.ToPagedList(page ?? 1, 8); //? işaretleri boş gelme/boş olma durumuna karşı önlem amaçlı,kacinci sayfadan baslasin, sayfada kac deger olsun anlamina gelmektedir.
-    //        return View(advertpages);
-    //    }
 
-    //    public PartialViewResult ImageByAdvert(int id)
-    //    {
-    //        var imagevalues = imageFileManager.GetListByAdID(id);
-    //        if (imagevalues.Count > 0)
-    //        {
-    //            var image = imagevalues[0].ImagePath;
-    //            ViewBag.image = image;
-    //        }
-    //        return PartialView();
-    //    }
 
-    //    public ActionResult About()
-    //    {
-    //        ViewBag.Message = "Your application description page.";
+        [HttpGet]
+        public ActionResult Contact()
+        {
+            return View();
+        }
 
-    //        return View();
-    //    }
+        [HttpPost]
+        public ActionResult Contact(Contact p)
+        {
 
-    //    public ActionResult Contact()
-    //    {
-    //        ViewBag.Message = "Your contact page.";
+            p.UserMail = "admin@gmail.com";
+            p.ContactDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+            p.ContactStatus = true;
+            contactManager.ContactAddBL(p);
+            return RedirectToAction("Adverts","Default");
 
-    //        return View();
-    //    }
+        }
+
     }
 }

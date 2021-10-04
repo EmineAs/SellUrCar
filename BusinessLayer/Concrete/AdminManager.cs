@@ -40,5 +40,10 @@ namespace BusinessLayer.Concrete
             string hashedname = Convert.ToBase64String(dataarray);
             return hashedname;
         }
+
+        public List<Admin> GetList()
+        {
+            return _adminDal.List();
+        }
     }
 }

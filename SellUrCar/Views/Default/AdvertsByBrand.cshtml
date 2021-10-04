@@ -1,13 +1,11 @@
 ﻿@using EntityLayer.Concrete
-@using PagedList
-@using PagedList.Mvc
-@model PagedList.IPagedList<Advert>
+@model List<Advert>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-
+    ViewBag.Title = "AdvertsByBrand";
+    Layout = "~/Views/Shared/_DefaultLayout.cshtml";
 }
+
 
 <body class="hold-transition sidebar-mini">
     <section class="content-header">
@@ -22,16 +20,11 @@
     <section class="content">
         <!-- Default box -->
         <div class="card">
-            <div class="card-header" style="text-align:center">
-                <h1 class="card-title">Vitrin</h1>
-                @*<div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>*@
+            @Html.Action("MenuPartial", "Default")
+
+            <div style="text-align:center">
+                <h1>Vitrin</h1>
+
             </div>
             <div class="card-body p-0">
                 <table class="table table-striped projects">
@@ -70,7 +63,7 @@
                             <tr>
 
                                 <td>
-                                    @Html.Action("ImageByAdvert", "Home", new { id = item.AdID })
+                                    @Html.Action("ImageByAdvert", "Default", new { id = item.AdID })
 
                                 </td>
                                 <td>
@@ -92,7 +85,7 @@
                                     @item.City.CityName @item.District.DistrictName
                                 </td>
                                 <td>
-                                    <a href="/AdminAdvert/AdvertDetail/@item.AdID" class="btn btn-primary">Detayları Gör</a>
+                                    <a href="/Default/AdvertDetail/@item.AdID" class="btn btn-primary">Detayları Gör</a>
                                 </td>
 
                             </tr>
@@ -101,15 +94,7 @@
                 </table>
             </div>
             <!-- /.card-body -->
-            
-
         </div>
         <!-- /.card -->
     </section>
 
-
-    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions
-    {
-    LiElementClasses = new List<string>
-    { "page-link" }
-    })

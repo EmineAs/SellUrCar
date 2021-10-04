@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IAdminLoginService.cs" />
     <Compile Include="Abstract\IAdminService.cs" />
     <Compile Include="Abstract\IAdvertService.cs" />
     <Compile Include="Abstract\IBrandService.cs" />
@@ -66,7 +67,10 @@
     <Compile Include="Abstract\IMessageService.cs" />
     <Compile Include="Abstract\IModelService.cs" />
     <Compile Include="Abstract\ISerialService.cs" />
+    <Compile Include="Abstract\IUserLoginService.cs" />
+    <Compile Include="Abstract\IUserRegisterService.cs" />
     <Compile Include="Abstract\IUserService.cs" />
+    <Compile Include="Concrete\AdminLoginManager.cs" />
     <Compile Include="Concrete\AdminManager.cs" />
     <Compile Include="Concrete\AdvertManager.cs" />
     <Compile Include="Concrete\BrandManager.cs" />
@@ -79,8 +83,11 @@
     <Compile Include="Concrete\MessageManager.cs" />
     <Compile Include="Concrete\ModelManager.cs" />
     <Compile Include="Concrete\SerialManager.cs" />
+    <Compile Include="Concrete\UserLoginManager.cs" />
     <Compile Include="Concrete\UserManager.cs" />
+    <Compile Include="Concrete\UserRegisterManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ValidationRules\AdminValidator.cs" />
     <Compile Include="ValidationRules\AdvertValidator.cs" />
     <Compile Include="ValidationRules\BrandValidator.cs" />
     <Compile Include="ValidationRules\CityValidator.cs" />

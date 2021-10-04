@@ -13,8 +13,8 @@
 {
 
 <div class="form-group">
-    @Html.HiddenFor(x => x.BrandID, new { @class = "form-control" })
-    @Html.HiddenFor(x => x.SerialID, new { @class = "form-control" })
+    @Html.HiddenFor(x => x.BrandID)
+    @Html.HiddenFor(x => x.SerialID)
     @Html.Label("Seri Adı")
     @Html.TextBoxFor(x => x.SerialName, new { @class = "form-control" })
     @Html.ValidationMessageFor(x => x.SerialName)

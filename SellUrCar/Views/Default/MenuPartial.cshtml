@@ -5,7 +5,7 @@
     Layout = null;
 }
 
-
+@{ var brand="";}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +40,7 @@
                         <li class="nav-item">
                             <a href="~/Default/Adverts/" class="nav-link ">
                                 <p>
-                                    Tüm İlanlar (@ViewBag.advertcount)
+                                    Tüm İlanlar (@Model.Count())
                                 </p>
                             </a>
                         </li>
@@ -53,13 +53,17 @@
                             </a>
                             <ul class="nav nav-treeview">
 
-                                @foreach (var item in Model.GroupBy(x => x.Brand.BrandName))
+                                @foreach (var item in Model.GroupBy(x=>x.BrandID).ToList())
                                 {
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <p>@item.Key (@item.Count())</p>
-                                    </a>
-                                </li>
+                                    foreach (var item2 in item)
+                                    {
+                                        brand = item2.Brand.BrandName;
+                                    }
+                                    <li class="nav-item">
+                                        <a href="/Default/AdvertsByBrand/@item.Key" class="nav-link">
+                                            <p>@brand  (@item.Count())</p>
+                                        </a>
+                                    </li>
                                 }
                             </ul>
                         </li>
@@ -73,7 +77,7 @@
         <aside class="control-sidebar control-sidebar-dark">
             <!-- Control sidebar content goes here -->
         </aside>
-      
+
 
 </body>
 </html>

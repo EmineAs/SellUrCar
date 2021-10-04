@@ -12,7 +12,6 @@ namespace BusinessLayer.Abstract
         List<ImageFile> GetList();
         List<ImageFile> GetListByAdID(int id);
         void ImageAddBL(ImageFile image);
-
-
+        void ImageDelete(List<ImageFile> image);
     }
 }

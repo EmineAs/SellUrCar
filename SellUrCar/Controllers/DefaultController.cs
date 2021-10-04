@@ -23,18 +23,24 @@ namespace SellUrCar.Controllers
 
         public ActionResult Adverts(int? page)
         {
+            
             var advertvalues = advertManager.GetList();
             var advertpages = advertvalues.ToPagedList(page ?? 1, 7); //? işaretleri boş gelme/boş olma durumuna karşı önlem amaçlı,kacinci sayfadan baslasin, sayfada kac deger olsun anlamina gelmektedir.
             return View(advertpages);
         }
 
+        public ActionResult AdvertsByBrand(int id)
+        {
+            var advertvalues = advertManager.GetListByBrand(id);
+            return View(advertvalues);
+        }
+
         public PartialViewResult MenuPartial()
         {
             var advertvalues = advertManager.GetList();
-            var advertcount = advertvalues.Count();
-            ViewBag.advertcount = advertcount;
             return PartialView(advertvalues);
         }
+
         public PartialViewResult ImageByAdvert(int id)
         {
             var imagevalues = imageFileManager.GetListByAdID(id);

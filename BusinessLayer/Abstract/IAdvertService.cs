@@ -11,6 +11,7 @@ namespace BusinessLayer.Abstract
     {
         List<Advert> GetList();
         List<Advert> GetListByUserID(int id);
+        List<Advert> GetListByBrand(int id);
        
         void AdvertAddBL(Advert advert);
 

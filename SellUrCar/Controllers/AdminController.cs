@@ -1,6 +1,8 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +24,12 @@ namespace SellUrCar.Controllers
             return View();
         }
 
-        [HttpGet]
+        public ActionResult DeleteAdmin(Admin admin)
+        {
+            adminManager.AdminDelete(admin);
+            return RedirectToAction("Index");
+        }
+
         public ActionResult AddAdmin()
         {
             return View();
@@ -31,12 +38,21 @@ namespace SellUrCar.Controllers
         [HttpPost]
         public ActionResult AddAdmin(Admin p)
         {
-            p.AdminMail = adminManager.GetHash(p.AdminMail);
-            p.AdminPassword = adminManager.GetHash(p.AdminPassword);
-
-            adminManager.AdminAddBL(p);
+            AdminValidator adminValidator = new AdminValidator();
+            ValidationResult results = adminValidator.Validate(p);
+            if (results.IsValid)
+            {
+                adminManager.AdminAddBL(p);
+                return RedirectToAction("Index", "Authorization");
+            }
+            else
+            {
+                foreach (var item in results.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
             return View();
-
         }
     }
 }
