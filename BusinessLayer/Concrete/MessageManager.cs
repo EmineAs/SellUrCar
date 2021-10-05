@@ -77,5 +77,10 @@ namespace BusinessLayer.Concrete
         {
             return _messageDal.List(x => (x.ReceiverMail==mail || x.SenderMail==mail) &&  x.MessageStatus == false);
         }
+
+        public void MessageDeleteAll(Message message)
+        {
+            _messageDal.Delete(message);
+        }
     }
 }

@@ -26,11 +26,14 @@
                 <div class="card card-primary card-outline">
                     <div class="card-header">
                         <h3 class="card-title">Mesajı Oku</h3>
+
                         <div class="card-tools">
                             <a href="#" class="btn btn-tool" data-toggle="tooltip" title="Previous"><i class="fas fa-chevron-left"></i></a>
                             <a href="#" class="btn btn-tool" data-toggle="tooltip" title="Next"><i class="fas fa-chevron-right"></i></a>
                         </div>
+                        
                     </div>
+                    
                     <div class="card-body p-0">
                         <div class="mailbox-read-info">
                             <h5>Konu :@Html.DisplayFor(x => x.Subject)</h5>
@@ -40,10 +43,11 @@
                                 <span class="mailbox-read-time float-right">@(((DateTime)Model.MessageDate).ToString("dd-MMM-yyyy"))</span>
                             </h6>
                         </div>
-                      
+
                         <div class="mailbox-read-message">
                             <p>@Html.Raw(Model.MessageContent)</p>
                         </div>
+                        
                     </div>
                 </div>
             </div>

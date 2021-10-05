@@ -22,6 +22,8 @@ namespace BusinessLayer.Abstract
 
         void MessageDelete(Message message);
 
+        void MessageDeleteAll(Message message);
+
         void MessageUpdate(Message message);
     }
 

@@ -33,6 +33,7 @@ namespace SellUrCar.Controllers
             {
                 FormsAuthentication.SetAuthCookie(adminuserinfo.AdminMail, false);
                 Session["AdminUserName"] = adminuserinfo.AdminUserName;
+                Session["AdminMail"] = adminuserinfo.AdminMail;
                 return RedirectToAction("AllAdvert", "AdminAdvert");
             }
             else
@@ -66,6 +67,20 @@ namespace SellUrCar.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult AdminLogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("AdminLogin", "LogIn");
+        }
+
+        public ActionResult UserLogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("UserLogin", "LogIn");
         }
     }
 }

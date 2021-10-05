@@ -19,80 +19,117 @@ namespace SellUrCar.Controllers
 
         public ActionResult Inbox()
         {
-            string mail = (string)Session["UserMail"];
+            string mail = (string)Session["AdminMail"];
             var messageList = messageManager.GetListInBox(mail);
             return View(messageList);
         }
 
         public ActionResult ReadMessages()
         {
-            string mail = (string)Session["UserMail"];
-
+            string mail = (string)Session["AdminMail"];
             var messageList = messageManager.GetListReadMessages(mail);
             return View("Inbox", messageList);
         }
 
         public ActionResult UnReadMessages()
         {
-            string mail = (string)Session["UserMail"];
-
+            string mail = (string)Session["AdminMail"];
             var messageList = messageManager.GetListUnReadMessages(mail);
             return View("Inbox", messageList);
         }
 
+        public ActionResult DeleteMessage(int id)
+        {
+            var messagevalue = messageManager.GetByID(id);
+            messageManager.MessageDelete(messagevalue);
+            return RedirectToAction("Inbox");
+        }
+
+        public ActionResult DeleteMessageAll(int id)
+        {
+            var messagevalue = messageManager.GetByID(id);
+            messageManager.MessageDeleteAll(messagevalue);
+            return RedirectToAction("Inbox");
+        }
         public ActionResult Sendbox()
         {
-            string mail = (string)Session["UserMail"];
-
+            string mail = (string)Session["AdminMail"];
             var messageList = messageManager.GetListSendBox(mail);
             return View(messageList);
         }
 
         public ActionResult Draftbox()
         {
-            string mail = (string)Session["UserMail"];
-
+            string mail = (string)Session["AdminMail"];
             var messageList = messageManager.GetListDraftBox(mail);
             return View(messageList);
         }
 
         public ActionResult Trashbox()
         {
-            string mail = (string)Session["UserMail"];
-
+            string mail = (string)Session["AdminMail"];
             var messageList = messageManager.GetListTrashBox(mail);
             return View(messageList);
         }
 
-        [HttpGet]
+       
         public ActionResult NewMessage()
         {
             return View();
         }
 
-        [HttpPost]
-        [ValidateInput(false)] //content açılmıyordu ekledim sonra buraya dönecem
-
-        public ActionResult NewMessage(Message p)
+        [HttpPost, ValidateInput(false)]
+        public ActionResult NewMessage(Message message, string menu)
         {
-            ValidationResult results = messagevalidator.Validate(p);
+            string session = (string)Session["AdminMail"];
 
-            if (results.IsValid)
-            {
-                p.SenderMail = "admin@gmail.com";
-                p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-                p.MessageStatus = true;
-                p.Read = false;
-                messageManager.MessageAddBL(p);
-                return RedirectToAction("Sendbox");
+            ValidationResult results = messagevalidator.Validate(message);
 
-            }
-            else
+            //Yeni Mesaj sayfasındaki buton isimlerine göre kontroller aşagıdaki gibi yapılır
+
+            //Eğer kullanıcı Gönder tuşuna basarsa;
+            if (menu== "send")
             {
-                foreach (var item in results.Errors)
+                if (results.IsValid)
                 {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                    message.SenderMail = session;
+                    message.MessageStatus = true;
+                    message.Read = false;
+                    message.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                    messageManager.MessageAddBL(message);
+                    return RedirectToAction("Inbox");
                 }
+                else
+                {
+                    foreach (var item in results.Errors)
+                    {
+                        ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                    }
+                }
+            }
+            //Eğer kullanıcı Taslaklara Kaydet tuşuna basarsa;
+            else if (menu == "draft")
+            {
+                if (results.IsValid)
+                {
+                    message.SenderMail = session;
+                    message.Draft = true;
+                    message.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                    messageManager.MessageAddBL(message);
+                    return RedirectToAction("Inbox");
+                }
+                else
+                {
+                    foreach (var item in results.Errors)
+                    {
+                        ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                    }
+                }
+            }
+            //Eğer kullanıcı İptal tuşuna basarsa;
+            else if (menu == "cancel")
+            {
+                return RedirectToAction("Inbox");
             }
             return View();
         }
@@ -104,17 +141,6 @@ namespace SellUrCar.Controllers
             messageManager.MessageUpdate(messagevalue);
             return View(messagevalue);
         }
-        public ActionResult AddDraftMessage(Message p)
-        {
-            p.SenderMail = "admin@gmail.com";
-            p.Draft = true;
-            p.MessageStatus = true;
-            p.MessageDate = DateTime.Now;
-            messageManager.MessageAddDraftBL(p);
-            return RedirectToAction("Inbox");
-
-        }
-
-
+      
     }
 }

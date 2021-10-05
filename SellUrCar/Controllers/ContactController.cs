@@ -17,12 +17,27 @@ namespace SellUrCar.Controllers
         ContactManager contactManager = new ContactManager(new EfContactDal());
         MessageManager messageManager = new MessageManager(new EfMessageDal());
         ContactValidator cv = new ContactValidator();
+
         public ActionResult Index()
         {
             var contactvalues = contactManager.GetList();
             return View(contactvalues);
         }
 
+        public ActionResult DeleteContact(int id)
+        {
+            var contactvalue = contactManager.GetByID(id);
+            contactvalue.ContactStatus = false;
+            contactManager.ContactUpdate(contactvalue);
+            return RedirectToAction("Inbox");
+        }
+
+        public ActionResult DeleteContactAll(int id)
+        {
+            var contactvalue = contactManager.GetByID(id);
+            contactManager.ContactDelete(contactvalue);
+            return RedirectToAction("Inbox");
+        }
 
         public ActionResult GetContactDetail(int id)
         {
@@ -37,7 +52,7 @@ namespace SellUrCar.Controllers
             var countContact = contactvalues.Count();
             ViewBag.countContact = countContact;
 
-            string mail = (string)Session["UserMail"];
+            string mail = (string)Session["AdminMail"];
             var inboxvalues = messageManager.GetListInBox(mail);
             var countInbox = inboxvalues.Count();
             ViewBag.countInbox = countInbox;
