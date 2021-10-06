@@ -8,7 +8,8 @@
 <h1>Yeni İlan Ekleme</h1>
 <br />
 
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
 
 @using (Html.BeginForm("NewAdvert", "UserPanelAdvert", FormMethod.Post))
 {
@@ -147,6 +148,8 @@
                 // Brandid'ye göre veri getir.
 
                 success: function (states) {
+                    $("#SerialID").append('<option value="">--Seri Seçiniz--</option>');
+
                     $.each(states, function (i, state) {
                         $("#SerialID").append('<option value="' + state.Value + '">' +
                              state.Text + '</option>');
@@ -171,9 +174,11 @@
                 url: '@Url.Action("GetModel")', // GetModel metoduna git
                 dataType: 'json',
                 data: { id: $("#SerialID").val() },
-                // ModelID'ye göre veri getir.
+                // SerialID'ye göre veri getir.
 
                 success: function (states) {
+                    $("#ModelID").append('<option value="">--Model Seçiniz--</option>');
+
                     $.each(states, function (i, state) {
                         $("#ModelID").append('<option value="' + state.Value + '">' +
                              state.Text + '</option>');
@@ -201,7 +206,10 @@
                     // CityID'ye göre veri getir.
 
                     success: function (states) {
+
+                        $("#DistrictID").append('<option value="">--İlçe Seçiniz--</option>');
                         $.each(states, function (i, state) {
+
                             $("#DistrictID").append('<option value="' + state.Value + '">' +
                                  state.Text + '</option>');
                         });

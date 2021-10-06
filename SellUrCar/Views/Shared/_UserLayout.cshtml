@@ -9,7 +9,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title>Staj Proje Ödevi</title>
-
+    
     <!--PagedList Kullanimi-->
     <link rel="stylesheet" href="~/Content/PagedList.css" /> @*Sayfalama icin ilgili paketler kurulduktan sonra Content icerisine gelen css dosyasinin yolu Layout sayfalarina eklenir.*@
 
@@ -23,18 +23,13 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
     <!-- Ekko Lightbox -->
-    <link href="~/AdminLTE-3.0.4/ekko-lightbox/ekko-lightbox.css" rel="stylesheet" />
+    <!--<link href="~/AdminLTE-3.0.4/ekko-lightbox/ekko-lightbox.css" rel="stylesheet" />-->
     <!-- summernote -->
     <link href="~/AdminLTE-3.0.4/summernote/summernote-bs4.css" rel="stylesheet" />
-    <!-- Theme style -->
-    <!--<link href="~/AdminLTE-3.0.4/dist/css/adminlte.min.css" rel="stylesheet" />-->
+    
     <!-- icheck bootstrap -->
     <link href="~/AdminLTE-3.0.4/icheck-bootstrap/icheck-bootstrap.min.css" rel="stylesheet" />
-    <!-- Font Awesome Icons -->
-    <!--<link href="~/AdminLTE-3.0.4/fontawesome-free/css/all.min.css" rel="stylesheet" />-->
-    <!-- IonIcons -->
-    <!--<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">-->
-
+    
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -72,8 +67,6 @@ to get the desired effect
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-    with font-awesome or any other icon font library -->
                         <li class="nav-item has-treeview">
                             <a href="/UserPanel/UserProfile/" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -144,45 +137,19 @@ to get the desired effect
 
     <!-- ./wrapper -->
     <!-- REQUIRED SCRIPTS -->
+
+
     <!-- jQuery -->
     <script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap -->
+    <!-- Bootstrap 4 -->
     <script src="~/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE -->
-    <script src="~/AdminLTE-3.0.4/dist/js/adminlte.js"></script>
-    <!-- OPTIONAL SCRIPTS -->
-    <script src="~/AdminLTE-3.0.4/plugins/chart.js/Chart.min.js"></script>
-    <script src="~/AdminLTE-3.0.4/dist/js/demo.js"></script>
-    <script src="~/AdminLTE-3.0.4/dist/js/pages/dashboard3.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/AdminLTE-3.0.4/dist/js/adminlte.min.js"></script>
+
+
 
     @RenderSection("JavaScriptAlt", false)
 
 
-<!-- Filterizr-->
-<!-- Page specific script -->
-<script>
-    $(function () {
-        $(document).on('click', '[data-toggle="lightbox"]', function (event) {
-            event.preventDefault();
-            $(this).ekkoLightbox({
-                alwaysShowClose: true
-            });
-        });
-
-        $('.filter-container').filterizr({ gutterPixels: 3 });
-        $('.btn[data-filter]').on('click', function () {
-            $('.btn[data-filter]').removeClass('active');
-            $(this).addClass('active');
-        });
-    })</script>
-
-@*Page Script*@
-<script>
-    $(function () {
-        //Add text editor
-        $('#compose-textarea').summernote()
-    })
-</script>
-@RenderSection("Editor", false)
-</body>
+    </body>
 </html>
