@@ -104,6 +104,8 @@ namespace SellUrCar.Controllers
                 {
                     message.SenderMail = session;
                     message.Draft = true;
+                    message.MessageStatus = true;
+                    message.Read = false;
                     message.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
                     messageManager.MessageAddBL(message);
                     return RedirectToAction("Inbox");

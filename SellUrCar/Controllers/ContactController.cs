@@ -29,7 +29,7 @@ namespace SellUrCar.Controllers
             var contactvalue = contactManager.GetByID(id);
             contactvalue.ContactStatus = false;
             contactManager.ContactUpdate(contactvalue);
-            return RedirectToAction("Inbox");
+            return RedirectToAction("Index");
         }
 
         public ActionResult DeleteContactAll(int id)

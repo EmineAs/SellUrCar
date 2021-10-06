@@ -28,26 +28,21 @@ namespace BusinessLayer.ValidationRules
             RuleFor(x => x.UserPassWord).NotEmpty().WithMessage("Lütfen şifre alanını doldurunuz");
             RuleFor(x => x.UserPassWord).MinimumLength(3).WithMessage("Lütfen en az 3 karakter girişi yapın");
             RuleFor(x => x.UserPhoneNumber).NotEmpty().WithMessage("Telefon numarası kısmını doldurunuz");
-            RuleFor(x=>x.UserMail).Must(Isthere).WithMessage("Deneme");
+            RuleFor(x=>x.UserMail).Must(Isthere).WithMessage("Bu mail adresi zaten kullanımda");
         }
         private bool Isthere(string mail)
         {
-            try
-            {
+            
                 var usermail= userRegisterManager.GetUserMail(mail);
                 if (usermail != null)
                 {
-                    return true;
+                    return false;
                 }
                 else
                 {
-                    return false;
+                    return true;
                 }
-            }
-            catch
-            {
-                return false;
-            }
+           
         }
 
     

@@ -16,7 +16,6 @@ namespace SellUrCar.Controllers
     public class RegisterController : Controller
     {
         UserManager userManager = new UserManager(new EfUserDal());
-        UserRegisterManager userRegisterManager = new UserRegisterManager(new EfUserDal());
         UserValidator userValidator = new UserValidator();
 
 
@@ -34,8 +33,9 @@ namespace SellUrCar.Controllers
             if (results.IsValid)
             {
                 user.UserStatus = true;
+                user.UserImage = "/AdminLTE-3.0.4/dist/img/2.png";
                 userManager.UserAddBL(user);
-                return RedirectToAction("Index");
+                return RedirectToAction("UserLogIn", "LogIn");
             }
             else
             {
@@ -43,8 +43,8 @@ namespace SellUrCar.Controllers
                 {
                     ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
+                return View();
             }
-            return View();
         }
     }
 }

@@ -16,38 +16,90 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="/AdminLTE-3.0.4/login-form-20/css/style.css">
+    
+    <!-- Bootstrap-Core-CSS -->
+    <link href="~/AdminLTE-3.0.4/web/css/simpleLightbox.css" rel='stylesheet' type='text/css' />
+    <link href="~/AdminLTE-3.0.4/web/css/roadmap.css" rel="stylesheet" type="text/css" />
+    <!-- Banner-Slider-CSS -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/web/css/snow.css">
+
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/web/css/style.css" type="text/css" media="all" />
+    <!-- Style-CSS -->
+    <link rel="stylesheet" href="~/AdminLTE-3.0.4/web/css/fontawesome-all.css">
 
 </head>
-<body class="img js-fullheight" style="background-image: url(/AdminLTE-3.0.4/login-form-20/images/bg.jpg);">
+</head>
+<body class="img js-fullheight" style="background-image: url(/AdminLTE-3.0.4/web/images/banner.jpg);">
+    <!-- mian-content -->
+    <header class="index-banner" id="home">
+        <!-- nav -->
+        <nav class="main-header d-flex">
+            <div id="brand">
+                <div id="logo">
+                    <a href="/Home/HomePage/">
+                        <i class="fas fa-crosshairs"></i>
+                    </a>
+                </div>
+                <div id="word-mark">
+                    <h1>
+                        <a href="/Home/HomePage/">SellUrCar</a>
+                    </h1>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </nav>
+        <!-- //nav -->
+        <!-- banner -->
+        <div class="snow-container">
+            <div class="snow foreground"></div>
+            <div class="snow foreground layered"></div>
+            <div class="snow middleground"></div>
+            <div class="snow middleground layered"></div>
+            <div class="snow background"></div>
+            <div class="snow background layered"></div>
+        </div>
+
+        <!-- //banner -->
+    </header>
+    <!-- //header -->
     <section class="ftco-section">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6 text-center mb-5">
-                    <h2 class="heading-section">Kullanıcı Girişi</h2>
+                    <h2 class="heading-section">Üye Kayıt Ekranı</h2>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-6 col-lg-4">
                     <div class="login-wrap p-0">
-                        <h3 class="mb-4 text-center">Hesabın var mı?</h3>
-
                         @using (Html.BeginForm("UserRegister", "Register", FormMethod.Post))
                         {
                             <div class="form-group">
-                                <input type="text" name="UserMail" class="form-control" placeholder="Mail Adresi" required>
+                                @Html.TextBoxFor(x => x.UserName, new { @class = "form-control", @placeholder = "Adınız" })
                             </div>
-                            @Html.ValidationMessageFor(x=>x.UserMail)
                             <div class="form-group">
-                                <input id="password-field" name="UserPassWord" type="password" class="form-control" placeholder="********" required>
+                                @Html.TextBoxFor(x => x.UserSurName, new { @class = "form-control", @placeholder = "Soyadınız" })
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.UserPhoneNumber, new { @class = "form-control", @placeholder = "Telefon Numaranız" })
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.UserMail, new { @class = "form-control", @placeholder = "Mail Adresiniz" })
+                                @Html.ValidationMessageFor(x => x.UserMail)
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.UserPassWord, new { @class = "form-control", @placeholder = "Şifre", Type = "password" })
+                                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+
+                            </div>
+                            <div class="form-group">
+                                <input id="password-field" name2="UserPassWord2" type="password" class="form-control" placeholder="Şifre Tekrar" required>
                                 <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="form-control btn btn-primary submit px-3">Kaydet</button>
                             </div>
-                            
                         }
-
-                    
                     </div>
                 </div>
             </div>

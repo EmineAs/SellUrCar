@@ -17,39 +17,18 @@ namespace SellUrCar.Controllers
         MessageManager messageManager = new MessageManager(new EfMessageDal());
         MessageValidator messagevalidator = new MessageValidator();
 
-        public ActionResult Inbox()
-        {
-            string mail = (string)Session["AdminMail"];
-            var messageList = messageManager.GetListInBox(mail);
-            return View(messageList);
-        }
-
-        public ActionResult ReadMessages()
-        {
-            string mail = (string)Session["AdminMail"];
-            var messageList = messageManager.GetListReadMessages(mail);
-            return View("Inbox", messageList);
-        }
-
-        public ActionResult UnReadMessages()
-        {
-            string mail = (string)Session["AdminMail"];
-            var messageList = messageManager.GetListUnReadMessages(mail);
-            return View("Inbox", messageList);
-        }
-
         public ActionResult DeleteMessage(int id)
         {
             var messagevalue = messageManager.GetByID(id);
             messageManager.MessageDelete(messagevalue);
-            return RedirectToAction("Inbox");
+            return RedirectToAction("Index", "Contact");
         }
 
         public ActionResult DeleteMessageAll(int id)
         {
             var messagevalue = messageManager.GetByID(id);
             messageManager.MessageDeleteAll(messagevalue);
-            return RedirectToAction("Inbox");
+            return RedirectToAction("Index","Contact");
         }
         public ActionResult Sendbox()
         {
@@ -97,7 +76,7 @@ namespace SellUrCar.Controllers
                     message.Read = false;
                     message.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
                     messageManager.MessageAddBL(message);
-                    return RedirectToAction("Inbox");
+                    return RedirectToAction("Index", "Contact");
                 }
                 else
                 {
@@ -114,9 +93,11 @@ namespace SellUrCar.Controllers
                 {
                     message.SenderMail = session;
                     message.Draft = true;
+                    message.MessageStatus = true;
+                    message.Read = false;
                     message.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
                     messageManager.MessageAddBL(message);
-                    return RedirectToAction("Inbox");
+                    return RedirectToAction("Index", "Contact");
                 }
                 else
                 {
@@ -129,7 +110,7 @@ namespace SellUrCar.Controllers
             //Eğer kullanıcı İptal tuşuna basarsa;
             else if (menu == "cancel")
             {
-                return RedirectToAction("Inbox");
+                return RedirectToAction("Index", "Contact");
             }
             return View();
         }

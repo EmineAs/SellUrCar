@@ -2129,6 +2129,7 @@
     <Content Include="AdminLTE-3.0.4\web\images\g8.jpg" />
     <Content Include="AdminLTE-3.0.4\web\images\g9.jpg" />
     <Content Include="AdminLTE-3.0.4\web\images\loader.gif" />
+    <Content Include="AdminLTE-3.0.4\web\images\login.jpg" />
     <Content Include="AdminLTE-3.0.4\web\images\move_up.png" />
     <Content Include="AdminLTE-3.0.4\web\images\next.png" />
     <Content Include="AdminLTE-3.0.4\web\images\prev.png" />
@@ -2674,7 +2675,6 @@
     <Content Include="Views\AdminUser\PassiveUser.cshtml" />
     <Content Include="Views\Contact\ContactPartial.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
-    <Content Include="Views\Message\Inbox.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\AdminBrand\EditBrand.cshtml" />
     <Content Include="Views\AdminModel\EditModel.cshtml" />
