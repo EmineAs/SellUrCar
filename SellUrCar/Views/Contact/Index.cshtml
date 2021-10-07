@@ -59,7 +59,15 @@
                                             <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
                                             <td class="mailbox-name"><a href="/Contact/GetContactDetail/@item.ContactID">@item.UserName</a></td>
                                             <td class="mailbox-subject">
-                                                <b>@item.Subject</b>- @item.Message.Substring(0, 30)...
+                                                @if (item.Message.Length >= 50)
+                                                {
+                                                        <b>@item.Subject</b>@Html.Raw(item.Message.Substring(0, 50));
+
+                                                }
+                                                else if (item.Message.Length < 50)
+                                                {
+                                                        <b>@item.Subject</b>@Html.Raw(item.Message);
+                                                }
                                             </td>
                                             <td class="mailbox-attachment"></td>
                                             <td class="mailbox-date">

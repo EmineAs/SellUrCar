@@ -154,10 +154,12 @@ namespace SellUrCar.Controllers
 
         public ActionResult DeleteAdvert(int id)
         {
-            var advertValue = advertManager.GetByID(id);
-            advertManager.AdvertDelete(advertValue);
-            return RedirectToAction("MyAdvert");
 
+            var advertvalues = advertManager.GetByID(id);
+            var imagevalues = imageFileManager.GetListByAdID(id);
+            imageFileManager.ImageDelete(imagevalues);
+            advertManager.AdvertDelete(advertvalues);
+            return RedirectToAction("MyAdvert");
         }
 
         public ActionResult AllAdvert(int? page) //Buradaki int? page bos gelmeye karsi önlem amaclidir

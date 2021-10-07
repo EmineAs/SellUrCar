@@ -95,6 +95,14 @@
     <Compile Include="Migrations\202109302135094_del_colorid.designer.cs">
       <DependentUpon>202109302135094_del_colorid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110062117139_edit_district.cs" />
+    <Compile Include="Migrations\202110062117139_edit_district.designer.cs">
+      <DependentUpon>202110062117139_edit_district.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110071133136_edit_advert1.cs" />
+    <Compile Include="Migrations\202110071133136_edit_advert1.designer.cs">
+      <DependentUpon>202110071133136_edit_advert1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Concrete\Repository\GenericRepository.cs" />
@@ -121,6 +129,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202109302135094_del_colorid.resx">
       <DependentUpon>202109302135094_del_colorid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110062117139_edit_district.resx">
+      <DependentUpon>202110062117139_edit_district.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110071133136_edit_advert1.resx">
+      <DependentUpon>202110071133136_edit_advert1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

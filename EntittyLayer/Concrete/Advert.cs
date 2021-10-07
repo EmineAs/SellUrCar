@@ -25,13 +25,13 @@ namespace EntityLayer.Concrete
         [StringLength(50)]
         public string Color { get; set; }
 
-        [StringLength(6)]
+        [StringLength(20)]
         public string CurrentMilage { get; set; }
 
-        [StringLength(5)]
+        [StringLength(20)]
         public string EnginValume { get; set; }
 
-        [StringLength(5)]
+        [StringLength(20)]
         public string EnginPower { get; set; }
 
         public decimal Price { get; set; }

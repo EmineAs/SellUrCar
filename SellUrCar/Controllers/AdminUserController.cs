@@ -35,8 +35,14 @@ namespace SellUrCar.Controllers
             return RedirectToAction("Index");
         }
 
-      
+        public ActionResult DeleteUser(int id)
+        {
+            var uservalue = userManager.GetByID(id);
+            uservalue.UserStatus = false;
+            userManager.UserUpdate(uservalue);
+            return RedirectToAction("Index");
+        }
 
-       
+
     }
 }

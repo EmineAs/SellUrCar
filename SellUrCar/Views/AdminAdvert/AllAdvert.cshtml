@@ -82,7 +82,10 @@
                                 @(((DateTime)item.AdvertDate).ToString("dd-MMM-yyyy"))
                             </td>
                             <td>
-                                @item.Brand.BrandName @item.Serial.SerialName @item.Model.ModelName
+                              
+                                @item.Brand.BrandName  @item.Serial.SerialName  @item.Model.ModelName
+
+
                             </td>
                             <td>
                                 @item.ModelYear
@@ -91,7 +94,9 @@
                                 @item.Price.ToString("c")
                             </td>
                             <td>
-                                @item.City.CityName @item.District.DistrictName
+                               
+                                    @item.City.CityName @item.District.DistrictName
+
                             </td>
                             <td>
                                 <a href="/AdminAdvert/AdvertDetail/@item.AdID" class="btn btn-primary">Detayları Gör</a>

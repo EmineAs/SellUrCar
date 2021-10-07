@@ -90,9 +90,7 @@
     <Compile Include="ValidationRules\AdminValidator.cs" />
     <Compile Include="ValidationRules\AdvertValidator.cs" />
     <Compile Include="ValidationRules\BrandValidator.cs" />
-    <Compile Include="ValidationRules\CityValidator.cs" />
     <Compile Include="ValidationRules\ContactValidator.cs" />
-    <Compile Include="ValidationRules\DistrictValidator.cs" />
     <Compile Include="ValidationRules\MessageValidator.cs" />
     <Compile Include="ValidationRules\ModellValidator.cs" />
     <Compile Include="ValidationRules\SerialValidator.cs" />

@@ -12,7 +12,7 @@ namespace EntityLayer.Concrete
         [Key]
         public int DistrictID { get; set; }
 
-        [StringLength(10)]
+        [StringLength(20)]
         public string DistrictName { get; set; }
 
         public int? CityID { get; set; }
