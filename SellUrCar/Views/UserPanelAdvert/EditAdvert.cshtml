@@ -16,7 +16,9 @@
             @Html.Label(@DateTime.Now.ToString("dd-MMM-yyyy"))
         </div>
         <table class="table table-hover">
-            @Html.HiddenFor(x=>x.AdID)
+            @Html.HiddenFor(x => x.AdID)
+            @Html.HiddenFor(x => x.AdvertDate)
+            @Html.HiddenFor(x => x.UserID)
             <tr>
                 <th width="10%">
                     İlan Başlığı
@@ -30,7 +32,8 @@
                     İl
                 </th>
                 <td>
-                    @Html.DropDownListFor(x => x.CityID, (List<SelectListItem>)ViewBag.city, "-- İl Seçiniz  --", new { @class = "form-control" })
+                    @Html.DropDownListFor(x => x.CityID, (List<SelectListItem>)ViewBag.city,
+                   "-- İl Seçiniz  --", new { @class = "form-control" })
                 </td>
             </tr>
             <tr>
@@ -38,7 +41,8 @@
                     İlçe
                 </th>
                 <td>
-                    @Html.DropDownListFor(x => x.DistrictID, new SelectList(string.Empty, "Value", "Text"), Model.District.DistrictName, new { @class = "form-control" })
+                    @Html.DropDownListFor(x => x.DistrictID, new SelectList(new List<SelectListItem>()),
+                   new { @class = "form-control" })
                 </td>
             </tr>
             <tr>
@@ -55,7 +59,8 @@
                     Seri
                 </th>
                 <td>
-                    @Html.DropDownListFor(x => x.SerialID, new SelectList(string.Empty, "Value", "Text"), Model.Serial.SerialName, new { @class = "form-control" })
+                    @Html.DropDownListFor(x => x.SerialID, new SelectList(new List<SelectListItem>()),
+                                      new { @class = "form-control" })
                 </td>
             </tr>
             <tr>
@@ -63,7 +68,8 @@
                     Model
                 </th>
                 <td>
-                    @Html.DropDownListFor(x => x.ModelID, new SelectList(string.Empty, "Value", "Text"), Model.Model.ModelName, new { @class = "form-control" })
+                    @Html.DropDownListFor(x => x.ModelID, new SelectList(new List<SelectListItem>()),
+                                      new { @class = "form-control" })
                 </td>
             </tr>
             <tr>
@@ -145,91 +151,110 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        //Araba markası seçilince
-        $("#BrandID").change(function () {
-            $("#SerialID").empty();
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("GetSerial")', // GetSerial metoduna git
-                dataType: 'json',
-                data: { id: $("#BrandID").val() },
-                // Brandid'ye göre veri getir.
-
-                success: function (states) {
-                    $("#SerialID").append('<option value="">--Seri Seçiniz--</option>');
-
-                    $.each(states, function (i, state) {
-                        $("#SerialID").append('<option value="' + state.Value + '">' +
-                             state.Text + '</option>');
-                    });
-                },
-                error: function (ex) {
-                    alert('Veri bulunamadı.' + ex);
-                }
-            });
-            return false;
-        })
-    });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        //Araba serisi seçilince
-        $("#SerialID").change(function () {
-            $("#ModelID").empty();
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("GetModel")', // GetModel metoduna git
-                dataType: 'json',
-                data: { id: $("#SerialID").val() },
-                // SerialID'ye göre veri getir.
-
-                success: function (states) {
-                    $("#ModelID").append('<option value="">--Model Seçiniz--</option>');
-
-                    $.each(states, function (i, state) {
-                        $("#ModelID").append('<option value="' + state.Value + '">' +
-                             state.Text + '</option>');
-                    });
-                },
-                error: function (ex) {
-                    alert('Veri bulunamadı.' + ex);
-                }
-            });
-            return false;
-        })
-    });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-
-                        //$("#DistrictID").empty();
-
             //İl seçilince
             $("#CityID").change(function () {
                 $("#DistrictID").empty();
+                SetDistrict();
+                return false;
+            })
+        function SetDistrict() {
                 $.ajax({
                     type: 'POST',
                     url: '@Url.Action("GetDistrict")', // GetDistrict metoduna git
                     dataType: 'json',
                     data: { id: $("#CityID").val() },
                     // CityID'ye göre veri getir.
-
                     success: function (states) {
-
                         $("#DistrictID").append('<option value="">--İlçe Seçiniz--</option>');
                         $.each(states, function (i, state) {
-
-                            $("#DistrictID").append('<option value="' + state.Value + '">' +
-                                 state.Text + '</option>');
+                            if (parseInt('@Model.DistrictID') == state.Value) {
+                                $("#DistrictID").append('<option selected value="' + state.Value + '">' +
+                                    state.Text + '</option>');
+                            }
+                            else {
+                                $("#DistrictID").append('<option value="' + state.Value + '">' +
+                                    state.Text + '</option>');
+                            }
                         });
                     },
                     error: function (ex) {
                         alert('Veri bulunamadı.' + ex);
                     }
                 });
+        }
+        SetDistrict();
+        });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+            //Marka seçilince
+            $("#BrandID").change(function () {
+                $("#SerialID").empty();
+                SetSerial();
                 return false;
             })
+        function SetSerial() {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetSerial")', // GetSerial metoduna git
+                    dataType: 'json',
+                    data: { id: $("#BrandID").val() },
+                    // BrandID'ye göre veri getir.
+                    success: function (states) {
+                        $("#SerialID").append('<option value="">--Seri Seçiniz--</option>');
+                        $.each(states, function (i, state) {
+                            if (parseInt('@Model.SerialID') == state.Value) {
+                                $("#SerialID").append('<option selected value="' + state.Value + '">' +
+                                    state.Text + '</option>');
+                            }
+                            else {
+                                $("#SerialID").append('<option value="' + state.Value + '">' +
+                                    state.Text + '</option>');
+                            }
+                        });
+                        $("#ModelID").empty();
+                        SetModel($("#SerialID").val());
+                    },
+                    error: function (ex) {
+                        alert('Veri bulunamadı.' + ex);
+                    }
+                });
+        }
+        SetSerial();
         });
+</script>
+
+<script type="text/javascript">
+    //Seri seçilince
+    $("#SerialID").change(function () {
+        $("#ModelID").empty();
+        SetModel($("#SerialID").val());
+        return false;
+    })
+    function SetModel(serialID) {
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("GetModel")', // GetModel metoduna git
+                    dataType: 'json',
+                    data: { id: serialID },
+                    // SerialID'ye göre veri getir.
+                    success: function (states) {
+                        $("#ModelID").append('<option value="">--Model Seçiniz--</option>');
+                        $.each(states, function (i, state) {
+                            if (parseInt('@Model.ModelID') == state.Value) {
+                                $("#ModelID").append('<option selected value="' + state.Value + '">' +
+                                    state.Text + '</option>');
+                            }
+                            else {
+                                $("#ModelID").append('<option value="' + state.Value + '">' +
+                                    state.Text + '</option>');
+                            }
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Veri bulunamadı.' + ex);
+                    }
+                });
+    }
 </script>

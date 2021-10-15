@@ -114,33 +114,28 @@ namespace SellUrCar.Controllers
                                                    Text = x.BrandName,
                                                    Value = x.BrandID.ToString()
                                                }).ToList();
-
             List<SelectListItem> valueFuel = (from x in fuelManager.GetList()
                                               select new SelectListItem
                                               {
                                                   Text = x.FuelType,
                                                   Value = x.FuelID.ToString()
                                               }).ToList();
-
             List<SelectListItem> valueGear = (from x in gearManager.GetList()
                                               select new SelectListItem
                                               {
                                                   Text = x.GearType,
                                                   Value = x.GearID.ToString()
                                               }).ToList();
-
             List<SelectListItem> valueCity = (from x in cityManager.GetList()
                                               select new SelectListItem
                                               {
                                                   Text = x.CityName,
                                                   Value = x.CityID.ToString()
                                               }).ToList();
-
             ViewBag.brand = valueBrand;
             ViewBag.fuel = valueFuel;
             ViewBag.gear = valueGear;
             ViewBag.city = valueCity;
-
             var advertValue = advertManager.GetByID(id);
             return View(advertValue);
         }
@@ -234,6 +229,7 @@ namespace SellUrCar.Controllers
             return Json(valueSerial, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
         public JsonResult GetModel(int? id)
         {
 
