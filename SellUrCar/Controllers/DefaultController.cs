@@ -21,24 +21,40 @@ namespace SellUrCar.Controllers
         ImageFileManager imageFileManager = new ImageFileManager(new EfImageFileDal());
         UserManager userManager = new UserManager(new EfUserDal());
 
-        public ActionResult Adverts(int? page)
+        public ActionResult Adverts(int? page,string p)
         {
-            
             var advertvalues = advertManager.GetList();
+
+            if (!string.IsNullOrEmpty(p))
+            {
+                advertvalues = advertManager.GetList(p);
+            }
+            
             var advertpages = advertvalues.ToPagedList(page ?? 1, 7); //? işaretleri boş gelme/boş olma durumuna karşı önlem amaçlı,kacinci sayfadan baslasin, sayfada kac deger olsun anlamina gelmektedir.
             return View(advertpages);
         }
 
-        public ActionResult AdvertsByBrand(int id)
+        public ActionResult AdvertsByBrand(int id,int? page, string p)
         {
             var advertvalues = advertManager.GetListByBrand(id);
-            return View(advertvalues);
+            if (!string.IsNullOrEmpty(p))
+            {
+                advertvalues = advertManager.GetList(p);
+            }
+
+            var advertpages = advertvalues.ToPagedList(page ?? 1, 7); //? işaretleri boş gelme/boş olma durumuna karşı önlem amaçlı,kacinci sayfadan baslasin, sayfada kac deger olsun anlamina gelmektedir.
+            return View(advertpages);
         }
 
         public PartialViewResult MenuPartial()
         {
             var advertvalues = advertManager.GetList();
             return PartialView(advertvalues);
+        }
+
+        public PartialViewResult Search()
+        {
+            return PartialView();
         }
 
         public PartialViewResult ImageByAdvert(int id)

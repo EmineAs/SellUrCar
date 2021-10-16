@@ -53,5 +53,10 @@ namespace BusinessLayer.Concrete
         {
             return _advertDal.List(x => x.BrandID == id);
         }
+
+        public List<Advert> GetList(string p)
+        {
+            return _advertDal.List(x=>x.AdDescription.Contains(p) || x.AdvertTitle.Contains(p));
+        }
     }
 }

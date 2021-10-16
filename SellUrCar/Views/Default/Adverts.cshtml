@@ -8,7 +8,41 @@
     Layout = "~/Views/Shared/_DefaultLayout.cshtml";
 }
 
+
 <body class="hold-transition sidebar-mini">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <!--Left navbar links-->
+        <ul class="navbar-nav ">
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="~/Default/Adverts/" class="nav-link">Ana Sayfa</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="/Home/Contact/" class="nav-link">İletişim</a>
+            </li>
+        </ul>
+
+        @Html.Action("Search", "Default")
+
+        <ul class="navbar-nav ml-auto">
+            <li class="login">
+                <a href="/Login/UserLogin/">
+                    <div class="form-group">
+                        <button type="submit" class="form-control btn btn-primary submit px-3">GİRİŞ YAP</button>
+                    </div>
+                </a>
+            </li>
+            <li class="register">
+                <a href="/Register/UserRegister/">
+                    <div class="form-group">
+                        <button type="submit" class="form-control btn btn-primary submit px-3">KAYIT OL</button>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <!--Right navbar links-->
+    </nav>
+    <!--/.navbar-->
+
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -18,20 +52,19 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- Main content -->
+
     <section class="content">
         <!-- Default box -->
+        <div style="text-align:center">
+            <h1>Vitrin</h1>
+        </div>
         <div class="card">
             @Html.Action("MenuPartial", "Default")
 
-            <div style="text-align:center">
-                <h1>Vitrin</h1>
-
-            </div>
             <div class="card-body p-0">
                 <table class="table table-striped projects">
                     <thead>
                         <tr>
-
                             <th style="width: 10%">
                                 Resim
                             </th>
@@ -62,10 +95,8 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-
                                 <td>
                                     @Html.Action("ImageByAdvert", "Default", new { id = item.AdID })
-
                                 </td>
                                 <td>
                                     @item.AdvertTitle
@@ -88,7 +119,6 @@
                                 <td>
                                     <a href="/Default/AdvertDetail/@item.AdID" class="btn btn-primary">Detayları Gör</a>
                                 </td>
-
                             </tr>
                         }
                     </tbody>
@@ -99,9 +129,8 @@
         <!-- /.card -->
     </section>
 
-
     @Html.PagedListPager((IPagedList)Model, page => Url.Action("Adverts", new { page }), new PagedListRenderOptions
-    {
-    LiElementClasses = new List<string>
-    { "page-link" }
-    })
+        {
+        LiElementClasses = new List<string>
+        { "page-link" }
+        })

@@ -9,6 +9,8 @@
 }
 
 <body class="hold-transition sidebar-mini">
+   
+
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -36,7 +38,6 @@
                 <table class="table table-striped projects">
                     <thead>
                         <tr>
-
                             <th style="width: 10%">
                                 Resim
                             </th>
@@ -67,10 +68,8 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-
                                 <td>
                                     @Html.Action("ImageByAdvert", "UserPanelAdvert", new { id = item.AdID })
-
                                 </td>
                                 <td>
                                     @item.AdvertTitle
@@ -79,10 +78,7 @@
                                     @(((DateTime)item.AdvertDate).ToString("dd-MMM-yyyy"))
                                 </td>
                                 <td>
-                                    
-                                        @item.Brand.BrandName @item.Serial.SerialName @item.Model.ModelName
-
-
+                                    @item.Brand.BrandName @item.Serial.SerialName @item.Model.ModelName
                                 </td>
                                 <td>
                                     @item.ModelYear

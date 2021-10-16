@@ -164,6 +164,8 @@ namespace SellUrCar.Controllers
             return View(advertpages);
         }
 
+       
+
         public ActionResult AdvertDetail(int id)
         {
             var advertvalues = advertManager.GetByID(id);
